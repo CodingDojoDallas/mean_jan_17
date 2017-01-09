@@ -7,6 +7,9 @@ Our [course agenda](https://codingdojo-dallas.slack.com/files/katemoc/F3PP2BF3R/
 > “Computer science education cannot make anybody an expert programmer any more than studying brushes and pigment can make somebody an expert painter.”
 - Eric S. Raymond
 
+> “You’re building your own maze, in a way, and you might just get lost in it.” 
+― Marijn Haverbeke, Eloquent JavaScript: A Modern Introduction to Programming
+
 
 ## Setup
  1. Fork this repo to your github account
