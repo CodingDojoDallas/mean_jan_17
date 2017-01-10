@@ -1,0 +1,62 @@
+<html>
+
+
+    <head>
+      <meta charset="utf-8">
+      <meta name="description" content="on and callback">
+      <title>on and callback </title>
+      <link rel="stylesheet" type="text/css" href="style.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    </head>
+
+  <body>
+    <button class="btnToggle">Click me...</button>
+
+    <div id="buttons">
+    </div>
+    <script>
+
+           function attach_handlers() {
+               var classname = document.getElementsByClassName("btnToggle");
+
+               for (var i = 0; i < classname.length; i++)
+               {
+                  classname[i].addEventListener("mouseout", mOut);
+                  classname[i].addEventListener("mouseover", mOver);
+                  classname[i].addEventListener("keypress", mEnter);
+               }
+           }
+
+            function mOut(){
+                $(this).css('background-color', 'red');
+            }
+
+            function mOver(){
+                $(this).css('background-color', 'green');
+            }
+
+            function mEnter(e) {
+
+                alert("we in the house");
+
+                var key = e.which || e.keyCode;
+
+                if (key === 13)
+                {
+                    alert("we hit a key on the keyboard")
+
+                    strHtml = "<br>";
+                    strHtml += "<button class=btnToggle>Click me...</button>"
+
+                    $('#buttons').append(strHtml);
+
+                    attach_handlers();
+                }
+
+            }
+
+            attach_handlers();
+
+    </script>
+  </body>
+</html>

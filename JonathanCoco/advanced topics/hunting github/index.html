@@ -1,0 +1,33 @@
+<html>
+
+
+    <head>
+      <meta charset="utf-8">
+      <meta name="description" content="on and callback">
+      <title>on and callback </title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    </head>
+
+  <body>
+    <button id="button">Click me...</button>
+
+    <div id="github">
+    </div>
+    <script>
+
+        document.getElementById("button").addEventListener("click", GetGitHubUserInfo);
+
+        function GetGitHubUserInfo()
+        {
+            $.get("https://api.github.com/users/jonathancoco", displayName)
+            // Notice that displayName is a function that takes in 1 parameter (this is the data that comes back from the API)
+        }
+
+        function displayName(data) {
+          console.log(data);
+          $('#github').append(JSON.stringify(data));
+        }
+
+    </script>
+  </body>
+</html>
