@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Button Fun</title>
+		<script type="text/javascript">
+		window.onload=function(){
+			var button = document.getElementById("button");
+
+			console.log(button);
+
+			button.addEventListener("click", whatToDoOnClick);
+			console.log(button.className);
+			function whatToDoOnClick() {
+  				if (button.className==='blue'){
+  					console.log(button.className);
+  					button.className='red';
+  					console.log(button.className);
+  				}
+  				else {
+  					button.className='blue';
+  				}
+			}	
+		}	
+
+		</script>
+
+		<style type="text/css">
+			.red{
+				color:red;
+			}
+
+			.blue{
+				color:blue;
+			}
+
+
+		</style>
+	</head>
+	<body>
+		<button id='button' class='blue' > im a button! </button>
+	</body>
+</html>
