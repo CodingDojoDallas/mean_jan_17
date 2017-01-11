@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Button Fun!</title>
+  <style>
+    #button1 {
+      color: white;
+      font-size: 14px;
+      background-color: rgb(0, 0, 255);
+      padding: 15px;
+    } 
+  </style>
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script>
+    
+    $(document).ready(function(){
+      
+      var oldColor = $("#button1").css("backgroundColor");
+      
+      $("#button1").click(function(){
+        if ( $(this).css("backgroundColor") == 'rgb(0, 0, 255)' ) {
+          $(this).css("backgroundColor", 'rgb(255, 0, 0)');          
+        } else {
+          $(this).css("backgroundColor", 'rgb(0, 0, 255)');
+        }
+        oldColor = $(this).css("backgroundColor");
+      });
+        
+      $("#button1").hover(function(){
+        $(this).css("background-color", "rgb(0, 255, 0)");
+      }, function() {
+        $(this).css("background-color", oldColor);
+      });
+      
+    });
+  </script>
+</head>
+<body>
+  <button id="button1">This is my button</button>
+</body>
+</html>
