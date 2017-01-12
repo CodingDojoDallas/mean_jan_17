@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/style.css">
+  <title>Survey Form Results</title>
+</head>
+
+<body>
+ 
+  <div id="container">
+    <h2>Submitted Information</h2>
+    
+    <p class="key">Name:</p><p><%= context.name %></p><br >
+    <p class="key">Dojo Location:</p><p><%= context.location %></p><br >
+    <p class="key">Favorite Language:</p><p><%= context.language %></p><br >
+    <p class="key">Comment:</p><p class="comment"><%= context.comment %></p>
+    
+    <a href="/">
+      <button>Go Back</button>
+    </a>
+    
+  </div>
+  
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/style.css">
+  <title>Survey Form - Input</title>
+</head>
+
+<body>
+  
+  <div id="container">
+    
+    <form action="/result" method="post">
+
+      <label>Your Name:</label>
+      <input name="name" class="input" placeholder="Type Here">
+
+      <label>Dojo Location:</label>
+      <select name="location" class="input">
+              <option value="Dallas">Dallas</option>
+              <option value="San Jose">San Jose</option>
+              <option value="Seattle">Seattle</option>
+              <option value="Los Angeles">Los Angeles</option>
+              <option value="Chicago">Chicago</option>
+              <option value="Washington">Washington D.C.</option>
+      </select>
+
+      <label>Favorite Language:</label>
+      <select name="language" class="input">
+              <option value="MEAN">MEAN</option>
+              <option value="Python">Python</option>
+              <option value="Javascript">Javascript</option>
+              <option value="PHP">PHP</option>
+              <option value="C#">C#</option>
+              <option value="Xcode">Xcode</option>
+      </select>
+
+      <label>Comment (optional):</label>
+      <textarea name="comment" placeholder="Type Here"></textarea>
+
+      <input type="submit" class="button" value="Submit">
+    </form>
+    
+    
+  </div>
+  
+</body>
+</html>
