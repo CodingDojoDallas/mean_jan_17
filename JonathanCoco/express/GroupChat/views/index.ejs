@@ -1,0 +1,39 @@
+<html>
+<head>
+<title></title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type ="text/javascript">
+        $(document).ready(function (){
+            // this triggers the connection event in our server!
+            var socket = io.connect();
+
+            var name = prompt("what's your name?");
+            socket.emit("new_user", {user:name});
+
+
+            // we'll write all the socket stuff after the above line!
+            $('#Send').click(function (){
+                                            socket.emit("new_message", {user: name, message: $("#Message").val()});
+                                            $("#Message").val("");
+                                        });
+
+            socket.on('update_message', function (data){
+                console.log(data);
+                var strHtml = "<p>" + data.user + ": "+ data.message + "</p>";
+                $('#message_board').append(strHtml);
+            });
+
+            //var name = prompt("what's your name?");
+            //socket.emit("new_user", {user:name});
+
+        })
+    </script>
+</head>
+<body>
+    <h1>Conversation Board</h1>
+    <div id="message_board"></div>
+
+    <input type="text" id ="Message"></input>
+    <input type="submit" value="Send" id="Send"><br>
+</body>
