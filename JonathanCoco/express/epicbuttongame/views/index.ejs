@@ -1,0 +1,31 @@
+<html>
+<head>
+<title></title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type ="text/javascript">
+        $(document).ready(function (){
+            // this triggers the connection event in our server!
+            var socket = io.connect();
+            // we'll write all the socket stuff after the above line!
+            $('#UpdateCount').click(function (){
+                                            socket.emit("posting_update");
+                                        });
+            $('#ResetCount').click(function (){
+                                            socket.emit("posting_reset");
+                                        });
+            socket.on('updated_count', function (data){
+                console.log(data);
+                var strHtml = "The button has been pushed " + data.count + " time(s)";
+                $('#updated_message').html(strHtml);
+            });
+
+        })
+    </script>
+</head>
+<body>
+    <div id="updated_message"></div>
+    <p>Push the button to update the count!</p>
+    <input type="submit" value="Push the epic button" id="UpdateCount"><br>
+    <input type="submit" value="Reset" id="ResetCount"><br>
+</body>
