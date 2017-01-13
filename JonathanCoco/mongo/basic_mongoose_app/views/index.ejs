@@ -1,0 +1,20 @@
+<html>
+<body>
+    <form action="/users" method="post">
+        <p>Name:</p>
+        <input type="text" name="name"></input><br>
+
+        <p>Age:</p>
+        <input type="text" name="age"></input><br>
+
+        <input type="submit" value="Generate" class="button"><br>
+    </form>
+
+    <h2>Here are all the users:</h2>
+    <% for (var x in users) { %>
+        <h3>Name: <%= users[x].name %></h3>
+        <h4>Age: <%= users[x].age %></h4>
+        <hr>
+    <% } %>
+</body>
+</html>

@@ -1,0 +1,25 @@
+h2{
+  color:red;
+}
+
+form{
+  display:inline-block;
+}
+
+table{
+  border-style: solid;
+}
+
+td{
+  margin: 100px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.message{
+  margin-left: 25px;
+}
+
+.comment{
+  margin-left:  50px;
+}
