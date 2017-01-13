@@ -1,0 +1,38 @@
+<html>
+<head>
+	<title>button.html</title>
+</head>
+<body>
+	<h2>Button Fun</h2>
+	<button id="aButton" style="background-color: blue">The Button to Hover</button>
+	<button id="bButton" name="blue" style="background-color: blue">The Button to Click</button>
+
+	<script>
+		var button = document.getElementById("aButton");
+		var button2 = document.getElementById("bButton");
+		button.addEventListener("mouseover", turnGreen);
+		button.addEventListener("mouseout", turnBlue);
+		button2.addEventListener("click", turnColor);
+
+		function turnGreen(){
+			button.style="background-color: green; color: white;";
+		}
+		function turnBlue(){
+			button.style="background-color: blue; color: white;";
+		}
+		function turnColor(){
+			if (button2.name== "blue") {
+				button2.style="background-color: red; color: white;";
+				button2.name="red";
+			}
+			else {
+				button2.style="background-color: blue; color: white;";
+				button2.name="blue";
+			}
+		}
+		
+	</script>
+
+</body>
+</html>
+
