@@ -1,0 +1,75 @@
+#container, #msg {
+  width           : 350px;
+  margin          : 25px auto;
+  padding         : 20px;
+  border          : 2px solid black;
+  position        : relative;
+}
+#msg {
+  display         : none;
+  overflow        : visible;
+  word-wrap       : break-word;
+  background-color: greenyellow;
+  font-size       : 20px; 
+  margin-bottom   : 0px; 
+}
+h2 {
+  margin-top      : 0px;
+}
+
+.key {
+  font-size       : 16px;
+  width           : 140px;
+  color           : black;
+  text-align      : left;
+}
+p {
+  margin          : 12px 0 0 0;
+  color           : blue;
+  font-size       : 16px;
+  font-weight     : bold;
+  display         : inline-block;
+  padding-left    : 10px;
+}
+
+.comment {
+  padding-left    : 10px;
+  margin          : 0;
+  color           : blue;
+  font-size       : 16px;
+}
+
+label {
+  width           : 170px;
+  display         : inline-block;
+  vertical-align  : top;
+  margin-top      : 10px;
+}
+
+.input {
+  margin-top      : 10px;
+}
+
+select.input {
+  width           : 172px;
+}
+
+textarea {
+  width           : 340px;
+  height          : 100px;
+  margin-top      : 7px;
+  display         : block;
+  resize          : vertical;
+}
+
+button, .button {
+  margin          : 12px 0 0 290px;
+  color           : white;
+  background-color: cornflowerblue;
+  border          : 2px solid black;
+  padding         : 3px;
+  font-weight     : bold;
+}
+button {
+  margin          : 12px 0 0 286px;
+}

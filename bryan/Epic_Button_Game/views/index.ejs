@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+  <title>Survey Form (sockets) - Input</title>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      var socket = io.connect();
+      $('#button1').click(function () {
+        socket.emit("button_clicked");
+        return false;
+      });
+      $('#button2').click(function () {
+        socket.emit("reset_clicked");
+        return false;
+      });
+      socket.on('server_response', function (data) {
+        var msg = "The button has been pushed " + data.counter + " time(s)";
+        $("#msg").html(msg).show();
+      });
+    })
+  </script>
+</head>
+
+<body>
+  <center>
+    <div id="msg"></div>
+    <h2>Push the button to update the count!</h2>
+    <button type="submit" id="button1">Push the epic button</button>
+    <br />
+    <button type="submit" id="button2">Reset count</button>
+  </center>
+</body>
+
+</html>

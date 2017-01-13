@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+  <title>Survey Form (sockets) - Input</title>
+  
+  <script type ="text/javascript">
+    $(document).ready(function (){
+      var socket = io.connect();
+      
+      $('#form1').submit(function (){
+        var formdata = {
+          "name":    $('input[name="name"]').val(),
+          "local":   $('select[name="location"]').val(),
+          "lang":    $('select[name="language"]').val(),
+          "comment": $('textarea[name="comment"]').val(),
+        }
+        socket.emit("button_clicked", {formdata});
+        return false;
+      });
+      
+      socket.on('server_response', function (data){
+        var msg = "<span>You submitted the following information to the server: " + JSON.stringify(data.formdata) + "</span>";
+        msg += "<br /><br />Your lucky number emitted by the server is " + data.lucky + ".";
+        $("#msg").html(msg).show();
+      });
+      
+    })
+  </script>
+    
+</head>
+
+<body>
+  
+  <div id="msg"></div>
+  
+  <div id="container">
+    
+    <form id="form1">
+
+      <label>Your Name:</label>
+      <input name="name" class="input" placeholder="Type Here">
+
+      <label>Dojo Location:</label>
+      <select name="location" class="input">
+              <option value="Dallas">Dallas</option>
+              <option value="San Jose">San Jose</option>
+              <option value="Seattle">Seattle</option>
+              <option value="Los Angeles">Los Angeles</option>
+              <option value="Chicago">Chicago</option>
+              <option value="Washington">Washington D.C.</option>
+      </select>
+
+      <label>Favorite Language:</label>
+      <select name="language" class="input">
+              <option value="MEAN">MEAN</option>
+              <option value="Python">Python</option>
+              <option value="Javascript">Javascript</option>
+              <option value="PHP">PHP</option>
+              <option value="C#">C#</option>
+              <option value="Xcode">Xcode</option>
+      </select>
+
+      <label>Comment (optional):</label>
+      <textarea name="comment" placeholder="Type Here"></textarea>
+
+      <input type="submit" class="button" value="Submit">
+    </form>
+    
+  </div>
+  
+</body>
+</html>
