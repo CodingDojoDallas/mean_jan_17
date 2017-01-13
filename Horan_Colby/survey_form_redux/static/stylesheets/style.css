@@ -1,0 +1,31 @@
+.content{
+  width:600px;
+  height:230px;
+}
+.emitted{
+  display:none;
+  width: 400px;
+  height: auto;
+  margin-left: 100px;
+  background-color: #B6D7A8;
+  border-style: solid;
+  border-width: 1px;
+  padding:10px;
+}
+input{
+  text-align: right;
+}
+textarea{
+  text-align: right;
+}
+form{
+  margin:100px 100px 0 100px;
+}
+label{
+  display: inline-block;
+  vertical-align: top;
+  margin-bottom: 10px;
+}
+textarea{
+  display: inline-block;
+}
