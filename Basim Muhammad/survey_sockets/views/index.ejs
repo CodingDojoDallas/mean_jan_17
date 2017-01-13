@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Survey</title>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	    <script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+	    <script type ="text/javascript">
+	        $(document).ready(function (){
+	            // this triggers the connection event in our server!
+	            var socket = io.connect();
+	            // we'll write all the socket stuff after the above line!
+	            $('#submit').click(function (){
+				    socket.emit("button_clicked", {Name: $('input[name=name]').val(),Location: $('select[name=location]').val(), Language: $('select[name=language]').val(),Comment: $('textarea[name=comment]').val()});
+				});
+					socket.on('server_response', function (data){
+					    console.log('The server says: ' + data.name + ' ' + data.comment);
+					    $( "div" ).append( "<p>You emitted the follwing information to the server: data </p>" ); //tried <%= data.name %> in p tag but wouldnt work. also tried putting data that is returning directly into body but came up as undefined which is weired since it console logs fine on browser
+					});
+	        })
+	    </script>
+	</head>
+	<body>
+		<div></div>
+		<form >
+			Your name:<input type="text" name="name">
+			Dojo Location:
+			<select name='location'>
+				<option value='chicago'>Chicago</option>
+				<option value ='Dallas'>Dallas</option>
+				<option value ='San Jose'>San Jose</option>
+				
+			</select>
+			Favorite Language:
+			<select name='language'>
+				<option value='C'>C</option>
+				<option value ='Java'>Java</option>
+				<option value ='Python'>Python</option>
+				
+				
+			</select>
+
+			Comment: <textarea name='comment'>Type Here </textarea>
+			<input type="submit" value="Submit" id='submit'>
+
+		</form>
+	</body>
+</html>
