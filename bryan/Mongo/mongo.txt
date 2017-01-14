@@ -1,0 +1,73 @@
+#1
+use my_first_db
+
+#2
+db.createCollection("students")
+
+#3 / #4
+db.students.insert({name: "Bryan", home_state: "Alabama", lucky_number: 123, birthday: {month: 7, day: 24, year: 1961}})
+db.students.insert({name: "Cindy", home_state: "Medellin", lucky_number: 456, birthday: {month: 10, day: 4, year: 1986}})
+db.students.insert({name: "Olivia", home_state: "Texas", lucky_number: 6, birthday: {month: 7, day: 24, year: 1991}})
+db.students.insert({name: "Mason", home_state: "Texas", lucky_number: 7, birthday: {month: 3, day: 4, year: 1993}})
+db.students.insert({name: "Lily", home_state: "Bogota", lucky_number: 666, birthday: {month: 1, day: 14, year: 1980}})
+
+#5
+db.students.find()
+
+#6
+db.students.find( { "home_state": { $in: ["california", "washington"] } } );
+
+#7
+db.students.find({ "lucky_number": {$gt: 3} });
+db.students.find({ "lucky_number": {$lte: 10} });
+db.students.find({ "lucky_number": {$gte: 1, $lte: 9} });
+
+#8
+db.students.updateMany( {}, {$set: {interest:["coding", "brunch", "MongoDB"]} })
+
+#9
+db.students.update( {name: "Bryan"}, {$addToSet: {interest: "MongoDB"} })
+db.students.update( {name: "Cindy"}, {$addToSet: {interest: "Sky Diving"} })
+db.students.update( {name: "Olivia"}, {$addToSet: {interest: "Gymnastics"} })
+db.students.update( {name: "Mason"}, {$addToSet: {interest: "Gaming"} })
+db.students.update( {name: "Lily"}, {$addToSet: {interest: "Makeup"} })
+
+#10
+db.students.update( {name: "Bryan"}, {$addToSet: {interest: "Taxes"} })
+
+#11
+db.students.update( { name: "Bryan" }, {$pull: {interest: "Taxes"}} )
+
+#12
+db.students.remove( {"home_state": {$in: ["california", "washington"]} } );
+
+#13
+db.students.remove( {"name": {"Lily"} } );
+
+#14
+db.students.remove( { "lucky_number": {$gt: 5} }, true );
+
+#15
+db.students.update({}, {$set: {"number_of_belts": 0}}, {multi: true});
+
+#16
+db.students.update( {}, { $inc: { number_of_belts: 1} } );
+
+#17
+db.students.update({}, {$rename:{"number_of_belts":"belts_earned"}}, false, true);
+
+#18
+db.students.update( {}, { $unset: { "lucky_number": "" } } );
+
+#19
+db.students.update({}, {$set: {"updated_on": { $type: "timestamp" } }}, {multi: true});
+
+
+
+
+
+
+
+
+
+
