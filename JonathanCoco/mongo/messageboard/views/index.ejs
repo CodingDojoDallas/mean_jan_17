@@ -1,0 +1,71 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+</head>
+
+
+<body>
+    <h2>The Dojo Message Board:</h2>
+    <hr>
+
+    <form action="/message" method="post">
+        <p>Your Name:</p>
+        <input type="text" name="message_user_name"></input>
+
+        <p>Your message:</p>
+        <input type="text" name="message"></input><br>
+        <input type="submit" value="Post Message" class="button"><br>
+    </form>
+
+    <% if(typeof(errors) != 'undefined' ) { %>
+        <hr>
+        <h3>Message Validation Error</h3>
+        <% for (var x in errors) { %>
+         <p><%= errors[x].message %></p>
+        <% } %>
+    <% } %>
+
+    <hr>
+
+
+    <% for (var i=0; i<messages.length; i++) { %>
+
+        <div class = "message">
+            <h3>Name: <%= messages[i].name %></h3>
+            <h3>Message: <%= messages[i].message %></h3>
+        </div>
+
+        <div class = "comment">
+
+            <% for (var j=0; j<messages[i].comments.length; j++) { %>
+                <p> Name: <%= messages[i].comments[j].name %>  </p>
+                <p> Comment: <%= messages[i].comments[j].comment %>  </p>
+            <% } %>
+
+
+            <form action="/message/<%= messages[i]._id %>" method="post" class="comment_form">
+                <p>Name:</p>
+                <input type="text" name="comment_user_name"></input>
+
+                <p>Comment:</p>
+                <input type="text" name="comment"></input><br>
+                <input type="submit" value="Post Message" class="button"><br>
+            </form>
+        </div>
+
+
+    <% } %>
+
+    <% if(typeof(commentErrors) != 'undefined' ) { %>
+        <hr>
+        <h3> Comment Validation Error </h3>
+        <% for (var x in commentErrors) { %>
+         <p><%= commentErrors[x].message %></p>
+        <% } %>
+        <hr>
+    <% } %>
+
+
+
+</body>
+</html>

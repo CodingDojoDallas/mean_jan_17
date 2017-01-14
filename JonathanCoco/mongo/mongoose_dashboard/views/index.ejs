@@ -1,0 +1,47 @@
+<html>
+<head>
+    <link rel="stylesheet"  href="/stylesheets/style.css">
+</head>
+
+
+<body>
+    <form action='/animals/new' method='get'>
+      <input type='submit' value='New Animal'>
+    </form>
+
+    <h2>Here are all the animals:</h2>
+
+    <table>
+        <thead>
+            <th>Animal</th>
+            <th>Herd Size</th>
+            <th>Action</th>
+        </thead>
+        <% for (var x in animals) { %>
+        <tr>
+            <td><%= animals[x].animal %></td>
+            <td><%= animals[x].herd_Size %></td>
+
+            <td>
+                <form action='/animals/<%= animals[x]._id %>' method='get'>
+                  <input type='submit' value='Show'>
+                </form>
+
+                <form action='/animals/edit/<%= animals[x]._id %>' method='get'>
+                  <input type='submit' value='Edit'>
+                </form>
+
+                <form action='/animals/destroy/<%= animals[x]._id %>' method='post'>
+                  <input type='submit' value='Delete'>
+                </form>
+            </td>
+
+        </tr>
+        <% } %>
+
+    </table>
+
+
+
+</body>
+</html>
