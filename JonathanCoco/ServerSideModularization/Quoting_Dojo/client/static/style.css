@@ -1,0 +1,21 @@
+h2{
+  color:red;
+}
+
+form{
+  display:inline-block;
+}
+
+table{
+  border-style: solid;
+}
+
+td{
+  margin: 100px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.button{
+  margin-top: 20px;
+}

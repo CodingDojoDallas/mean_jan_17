@@ -1,0 +1,70 @@
+<html>
+<head>
+  <title></title>
+  <script src='bower_components/angular/angular.js'></script>
+  <script type='text/javascript'>
+    var myApp = angular.module('myApp', []);
+    myApp.controller('usersController', ['$scope', function ($scope){
+      // we don't need a factory for this demo, it wouldn't make a difference if we did.
+        $scope.sortType     = 'first_name'; // set the default sort type
+        $scope.sortReverse  = false;  // set the default sort order
+
+        $scope.users = [
+            {first_name:'Jon', last_name: 'Coco', language:'angular'},
+            {first_name:'Jennifer', last_name: 'Coco', language:'french'}
+        ];
+
+        $scope.addUser = function(firstName, lastName, favoriteLanguage){
+
+            user = { first_name: firstName, last_name: lastName, language: favoriteLanguage}
+            $scope.users.push(user);
+            console.log($scope.users);
+        }
+
+        $scope.deleteUser = function(index){
+
+            $scope.users.splice(index, 1);
+        }
+    }])
+  </script>
+</head>
+<body ng-app='myApp'>
+    <div ng-controller='usersController'>
+      <label>First Name</label>
+      <input type="text" ng-model = 'firstName'><br>
+
+      <label>Last Name</label>
+      <input type="text" ng-model = 'lastName'><br>
+
+      <label>Favorite Language</label>
+      <input type="text" ng-model = 'favoriteLanguage'><br>
+
+      <button ng-click = "addUser(firstName, lastName, favoriteLanguage);">Create User</button>
+
+
+      <br>
+      <br>
+      <br>
+
+      <input type="text" ng-model = 'userFilter'>
+      <br>
+
+      <table>
+          <thead>
+              <tr>
+                  <td><a href="#" ng-click="sortType = 'first_name'; sortReverse = !sortReverse">First Name</a></td>
+                  <td><a href="#" ng-click="sortType = 'last_name'; sortReverse = !sortReverse">Last Name</a></td>
+                  <td><a href="#" ng-click="sortType = 'language'; sortReverse = !sortReverse">Language </a></td>
+                  <td>Actions</td>
+              <tr>
+          </thead>
+          <tr ng-repeat = "user in users | orderBy:sortType:sortReverse | filter:userFilter ">
+              <td>{{user.first_name}}</td>
+              <td>{{user.last_name}}</td>
+              <td>{{user.language}}</td>
+              <td><button ng-click = "deleteUser($index);">Delete User</button></td>
+          </tr>
+      </table>
+    </div>
+</body>
+</html>
