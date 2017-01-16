@@ -1,0 +1,37 @@
+<style>
+td
+{border-left:1px solid black;
+border-top:1px solid black;}
+table
+{border-right:1px solid black;
+border-bottom:1px solid black;}
+</style>
+
+
+<div ng-controller='PlayersController'>
+
+  <form name = 'playerForm'>
+      Player:<input type="text" name='name' ng-model='player' ng-minlength='4' required>
+      <button ng-click = "addPlayer(player)">Add Player</button>
+  </form>
+
+  <div ng-messages="playerForm.name.$error">
+    <p ng-message="minlength">The player name is too short.</p>
+    <p ng-message="required">The player name is required.</p>
+ </div>
+
+  <br> <br> <br>
+
+  <table>
+      <thead>
+          <tr>
+             <td><a href="" ng-click="sortType = 'player'; sortReverse = !sortReverse">Name</a></td>
+             <td>Actions</td>
+          <tr>
+      </thead>
+      <tr ng-repeat = "player in players | orderBy:sortType:sortReverse  " >
+          <td>{{player.player}}</td>
+          <td><button ng-click = "deletePlayer($index);">Remove Player</button></td>
+      </tr>
+  </table>
+</div>
