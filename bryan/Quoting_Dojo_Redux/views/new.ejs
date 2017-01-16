@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/styles.css">
+  <title>Animals Database</title>
+</head>
+
+<body>
+
+  <div id="container">
+    <h1>Animals Database</h1><br />
+    
+    <h2>Add new Animal</h2><br />
+
+    <form action="/animals/new" method="post">
+      <label for="name">Name:</label>
+      <input type="text" name="name" placeholder="Enter Name"><br /><br />
+
+      <label for="description">Description:</label><br />
+      <textarea name="description" rows="5" cols="50"></textarea><br /><br />
+
+      <label for="kingdom" >Kingdom:</label>
+      <input type="text" name="kingdom"><br /><br />
+
+      <label for="order">Order:</label>
+      <input type="text" name="order"><br /><br />
+
+      <label for="clade">Clade:</label>
+      <input type="text" name="clade"><br /><br />
+
+      <label for="phylum">Phylum:</label>
+      <input type="text" name="phylum"><br /><br /><br />
+
+      <button type="submit" class="bAdd">Submit</button>
+    </form>
+    
+  </div>
+
+</body>
+</html>

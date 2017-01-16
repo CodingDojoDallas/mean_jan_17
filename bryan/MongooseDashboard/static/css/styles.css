@@ -1,0 +1,100 @@
+* {
+  margin          : 0;
+  padding         : 0;
+}
+
+#container {
+  margin          : 0 auto;
+  width           : 980px;
+}
+
+h1 {
+  margin-top      : 15px;
+}
+
+table {
+  margin          : 20px 0;
+  text-align      : left;
+  border-collapse : collapse;
+}
+
+th {
+  height          : 20px;
+  border-bottom   : 1px solid black;
+}
+
+.tdName {
+  min-width       : 170px;
+  width           : 170px;
+  padding         : 2px;
+}
+
+.tdDescrip {
+  width           : 645px;
+  padding-right   : 10px;
+}
+
+.tdAction {
+  min-width       : 165px;
+  width           : 165px;
+  text-align      : center;
+}
+
+tbody tr {
+  height          : 53px;
+  border-bottom   : 1px solid darkgrey;
+}
+
+.bView,
+.bEdit,
+.bDelete,
+.bAdd {
+  padding         : 4px 7px;
+  margin-right    : 4px;
+  color           : white;
+  font-weight     : bold;
+  border          : 1px solid black;
+  border-radius   : 3px;
+  box-shadow      : 2px 2px 2px black;
+}
+
+.bView {
+  background-color: yellow;
+  color           : black;
+}
+
+.bEdit {
+  background-color: aqua;
+  color           : black;
+}
+
+.bDelete {
+  background-color: crimson;
+}
+
+.bAdd {
+  background-color: green;
+  font-size       : 1.15em;
+  padding         : 6px 10px;
+}
+
+.animal {
+  color           : red;
+  text-transform  : uppercase;
+}
+
+.details {
+  margin          : 30px 0;
+  padding         : 0 15px;
+  font-size       : 20px;
+}
+
+.info {
+  font-weight     : bold;
+  color           : blue;
+  margin-top      : 20px;
+}
+
+p {
+  margin-bottom   : 20px;
+}

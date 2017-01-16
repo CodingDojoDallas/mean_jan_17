@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/styles.css">
+  <title>Quoting Dojo Redux</title>
+</head>
+
+<body>
+
+  <div id="container">
+    <h1><center>Welcome to QutoingDojo!</center></h1><br /><br />
+
+    <% if ( locals.errors ) { %>
+      <div id="errors">
+       <ul>
+        <% for (x in errors) { %>     
+         <li><%= errors[x] %></li>
+        <% } %>
+        </ul>
+      </div>
+    <% } %>
+
+    <form id="router" action="/quotes" method="post">
+      <table>
+        <tr>
+          <td class="name"><label for="name">Your name:</label></td>
+          <td><input type="text" name="name" value="<%if(locals.info){%><%= info.name %><% } %>"></td>
+        </tr>
+        <tr>
+          <td class="name"><label for="quote">Your quote:</label><br /></td>
+          <td><textarea name="quote" rows="10" cols="52"><%if(locals.info){%><%= info.quote %><% } %></textarea></td>
+        </tr>  
+      </table>
+      <br /><br />
+      <button class="bAdd" type="submit" form="router">Add my quote!</button>  
+      <button class="bAdd" formaction="/quotes" formmethod="get" type="submit" form="router">Skip to quotes!</button>  
+    </form>
+
+  </div>
+  
+</body>
+</html>

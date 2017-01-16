@@ -1,0 +1,56 @@
+.container {
+  width: 800px;
+}
+
+#errors {
+  width: 70%;
+  margin-top: 10px;
+  padding: 10px 40px;
+  color: black;
+  font-size: 1.2em;
+  background-color: red;
+  border-radius: 11px;
+}
+
+h1 {
+  margin-bottom: 25px;
+}
+
+p {
+  margin: 0 0 3px;
+}
+
+.form-control {
+  width: 769px;  
+}
+
+input[name="name"] {
+  width: 300px;
+}
+label[for="name"] {
+  margin-top: 10px;
+}
+.post {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 5px 0 5px 15px;
+}
+.post p:nth-child(2) {
+  color: blue;
+}
+
+.comment {
+  font-size: 15px;
+  padding: 0;
+  margin: 10px 0 10px 30px;
+  border-bottom: 1px dotted gray;
+}
+
+.comment p:nth-child(2) {
+  font-weight: bold;  
+}
+
+.commentform {
+  margin-left: 15px;
+}
+
