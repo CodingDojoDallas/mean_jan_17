@@ -1,0 +1,10 @@
+<html>
+<body>
+    <h2>Here are all the users:</h2>
+    <% for (var user in users) { %>
+        <h3>Name: <%= users[user].name %></h3>
+        <h4>Email: <%= users[user].email %></h4>
+        <hr>
+    <% } %>
+</body>
+</html>
