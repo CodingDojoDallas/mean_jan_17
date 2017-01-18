@@ -4,59 +4,61 @@
 <head>
   <title>Products with Factory</title>
   <script src="bower_components/angular/angular.js"></script>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+  </style>
   <script type="text/javascript">
     
     var myAppModule = angular.module('myApp', []);
 
-    myAppModule.factory('ProductsFactory', 
-      function (){
-        
-        var products = [
-          { name: 'Keyboard', price: 149.99},
-          { name: 'Mouse',    price: 49.99},
-          { name: 'Monitor',  price: 299.99}
-        ]
-        
-        var factory = {};
+    myAppModule.factory('ProductsFactory', function (){
 
-        factory.list = function(callback) {
-          callback(products);
-        }
+      var products = [
+        { name: 'Keyboard', price: 149.99},
+        { name: 'Mouse',    price: 49.99},
+        { name: 'Monitor',  price: 299.99}
+      ]
 
-        factory.create = function(product, callback) {
-          products.push(product);
-          callback();
-        }
+      var factory = {};
 
-        factory.remove = function(product, callback) {
-          products.splice(products.indexOf(product), 1);
-        }
+      factory.list = function(callback) {
+        callback(products);
+      }
 
-        return factory;
+      factory.create = function(product, callback) {
+        products.push(product);
+        callback();
+      }
+
+      factory.remove = function(product) {
+        products.splice(products.indexOf(product), 1);
+      }
+
+      return factory;
     });
     
     
-    myAppModule.controller('ProductsController', ['$scope', 'ProductsFactory', 
-      function ($scope, ProductsFactory){
+    myAppModule.controller('ProductsController', ['$scope', 'ProductsFactory', function ($scope, ProductsFactory){
       
-        function getProducts() {
-          ProductsFactory.list(function (data) {
-            $scope.products = data;
-          })
-        }
+      $scope.get = function getProducts() {
+        ProductsFactory.list(function (data) {
+          $scope.products = data;
+        })
+      }
 
-        getProducts();
-        
-        $scope.create = function (newProduct) {
-          ProductsFactory.create(newProduct, function () {
-            getProducts();
-            $scope.newProduct = {};
-          })
-        }
+      $scope.get();
 
-        $scope.remove = function (product) {
-          ProductsFactory.remove(product); //, getProducts);
-        }
+      $scope.create = function (newProduct) {
+        ProductsFactory.create(newProduct, function () {
+          $scope.newProduct = {};
+        })
+      }
+
+      $scope.remove = function (product) {
+        ProductsFactory.remove(product); //, getProducts);
+      }
 
     }]);
 
@@ -69,22 +71,22 @@
       <legend>Products Controller</legend>
       
       <label>Product Name:
-      <input type="text" ng-model='newProduct.name'></label>
-      <label>Product Price:
+      <input type="text" ng-model='newProduct.name'></label><br /><br />
+      <label>Product Price: &nbsp;
       <input type="text" ng-model='newProduct.price'></label>
-      <input type="submit" value="Add Product" ng-click='create(newProduct)' />
-      
-      <table>
+      <input type="submit" value="Add Product" ng-click='create(newProduct)'>
+      <br /><br />
+      <table border="1" cellpadding="4" bordercollapse="0">
         <tr>
           <td>Name</td>
-          <td>Price</td>
+          <td align="right">Price</td>
           <td>Actions</td>
         </tr>
         <tr ng-repeat="item in products">
           <td>{{item.name}}</td>
-          <td>{{item.price}}</td>
+          <td align="right">{{item.price|currency}}</td>
           <td>
-            <button ng-click='remove(product)'>Delete Product</button>
+            <button ng-click='remove(item)'>Delete Product</button>
           </td>
         </tr>
       </table>
