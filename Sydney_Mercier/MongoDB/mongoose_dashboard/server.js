@@ -93,7 +93,6 @@ app.post('/:id', function(req, res) {
 
 // Delete owl from database
 app.post('/:id/destroy', function(req, res) {
-    console.log("POST DATA", req.body);
     var id = req.params.id;
     Owl.remove({_id: id}, function(err, data) {
       if(err) {
