@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html ng-app='myModule'>
+	<head>
+		<title>Controllers and Directives</title>
+		 <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js'></script>
+		 <script type="text/javascript">
+		 	
+		 	var myModule=angular.module('myModule',[])
+
+		 	myModule.controller('foodController',function($scope){
+		 		$scope.foods=['chili','pizza','fries']
+
+		 		$scope.addFood = function(){
+		 			$scope.foods.push($scope.food_name)
+		 		}
+
+		 	})
+		 </script>
+	</head>
+	<body ng-controller = 'foodController' ng-init="myText='Hello World!'">
+			<div ng-repeat= 'food in foods'>
+				<p>{{food}}</p>
+				
+				
+			</div>
+
+			<div>
+				<input type="name" ng-model='food_name'>
+				<input type="submit" ng-click='addFood()'>
+			</div>
+
+			<p ng-bind='myText'></p>
+	</body>
+</html>

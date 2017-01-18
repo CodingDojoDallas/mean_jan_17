@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+	<html ng-app='firstApp'>
+	<head>
+		<title>First Angular App</title>
+		 <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js'></script>
+		 <script type="text/javascript">
+		 	var firstAppModule= angular.module ('firstApp', []);
+		 	firstAppModule.controller('divController', function($scope){
+		 		$scope.myName = 'your name'; // your name!
+				$scope.myFavoriteLanguage = 'JavaScript';
+				$scope.myFavoriteJSLibrary = 'Angular';
+				$scope.Info=[];
+
+				$scope.addPersonalInfo = function(){
+					$scope.Info.push($scope.personalInfo);
+					$scope.personalInfo={};
+				}
+		 	});
+
+
+
+		 </script>
+	</head>
+	<body>
+		<div ng-controller = 'divController'>
+
+			Name:<input type="text"  ng-model= 'personalInfo.name'>
+			Fave Language: <input type="text"  ng-model= 'personalInfo.myFavoriteLanguage'>
+			Fave Library: <input type="text"  ng-model= 'personalInfo.myFavoriteJSLibrary'>
+			<input type="submit" value='Respond' ng-click='addPersonalInfo()'>
+
+
+			<ul>
+				<li ng-repeat= 'person in Info'> Name: {{person.name}}</li>
+			</ul>
+		</div>
+	</body>
+</html>
