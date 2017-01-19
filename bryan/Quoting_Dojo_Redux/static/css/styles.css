@@ -1,0 +1,78 @@
+* {
+  margin          : 0;
+  padding         : 0;
+}
+
+#container {
+  font-size       : 20px;
+  margin          : 0 auto;
+  width           : 800px;
+}
+
+h1 {
+  font-size       : 3.1em;
+  margin-top      : 15px;
+}
+
+table {
+  text-align      : left;
+  border-collapse : collapse;
+}
+
+tr {
+  height          : 83px;
+}
+
+input[name="name"] {
+  height          : 30px;
+  font-size       : 20px;
+  padding         : 2px;
+}
+textarea[name="quote"] {
+  font-size       : 20px;
+  padding         : 2px;
+}
+
+.bAdd {
+  padding         : 6px 10px;
+  margin-left     : 110px;
+  color           : white;
+  font-size       : 1.15em;
+  font-weight     : bold;
+  border          : 1px solid black;
+  border-radius   : 3px;
+  box-shadow      : 2px 2px 2px black;
+  background-color: green;
+}
+.name {
+  padding-left    : 64px;
+  padding-bottom  : 4px;
+}
+
+#quotewrapper .quote {
+  font-size       : 22px;
+  padding-left    : 6px;
+  color           : blue;
+  margin          : 15px 0;
+}
+
+#quotewrapper .name {
+  padding-left    : 120px;
+  padding-bottom  : 4px;
+  border-bottom   : 1px dashed black;
+}
+
+#quotewrapper {
+  width           : 95%;
+  margin          : 0 auto;
+  margin-top      : 40px;
+}
+
+#errors {
+  width: 400px;
+  margin: 0 auto;
+  padding: 10px 40px;
+  color: black;
+  background-color: red;
+  
+}

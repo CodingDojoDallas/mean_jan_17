@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/styles.css">
+  <title>Animals Database</title>
+</head>
+
+<body>
+
+<div id="container">
+  <h1><center>Here are the awesome quotes!</center></h1>
+  <div id="quotewrapper">
+    <% if ( quotes.length == 0 ) { %>
+      <h2><br /><br /><center>There are no quotes yet!</center><br /><br /></h2>
+    <% } else { %>
+      <% for (x in quotes) { %>     
+      <div class="quote">"<%= quotes[x].quote %>"</div>
+      <div class="name"> - <%= quotes[x].name %>
+        <%= quotes[x].createdAt %></div>
+      <% } %>
+    <% } %>  
+  </div>
+</div>
+    
+</body>
+</html>

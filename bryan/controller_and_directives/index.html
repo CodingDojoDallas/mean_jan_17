@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app = 'app'>
+<head>
+  <meta charset="UTF-8">
+  <title>First Angular Page</title>
+  <script src = 'bower_components/angular/angular.js'></script>
+  <script>
+    var app = angular.module('app', []);
+    app.controller('divController', ['$scope', 
+      function($scope){
+        $scope.food = [];
+        
+        $scope.addFood = function() {
+          $scope.food.push($scope.myFavFood);
+          $scope.myFavFood = "";
+        }
+        
+        $scope.enterKey = function(keyEvent) {
+          if (keyEvent.which === 13) {
+            $scope.addFood();
+          }
+        }
+      }
+    ]);
+  </script>
+</head>
+
+<body>
+    <div ng-controller="divController">
+     
+        <div style="display: inline; float: left; margin-right: 20px;">
+          <span>
+            Favorite Food:
+            <input type="text" ng-model="myFavFood" ng-keypress="enterKey($event)" placeholder="Enter favorite food">
+            <button ng-click="addFood()">Add Food</button>
+          </span>
+          <br />
+          <span>Currently typing: &nbsp;{{myFavFood}}</span>
+        </div>
+       
+      <div style="display: inline; float: left;">
+          <input type="text" ng-model="myFilter" placeholder="filter...">
+          <div ng-if="food.length>0" style="border: 1px solid lightgray; margin-top: 5px; padding-top: 5px;">
+            <p ng-repeat="item in food | filter:myFilter track by $index" style="margin:0 0 5px 5px;">{{$index+1}}) {{item}}</p>
+          </div>
+      </div>
+     
+    </div>
+</body>
+
+</html>

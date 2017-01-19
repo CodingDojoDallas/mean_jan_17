@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/styles.css">
+  <title>Animals Database</title>
+</head>
+
+<body>
+
+  <div id="container">
+    <h1><center>Animals Database: <span class="animal"><%= name %></span></center></h1>
+    
+    <div class="details">
+      <p><span class="info">Name:        </span><%= animal.name %></p>
+      <p><span class="info">Description: </span><%= animal.description %></p>
+      <p><span class="info">Kingdom:     </span><%= animal.kingdom %></p>
+      <p><span class="info">Order:       </span><%= animal.order %></p>
+      <p><span class="info">Clade:       </span><%= animal.clade %></p>
+      <p><span class="info">Phylum:      </span><%= animal.phylum %></p>
+    </div>
+   
+    <button class="bAdd" formaction="/animals/edit/<%= animal._id %>"    formmethod="get" type="submit" form="router">Edit <%= name %></button>  
+    <button class="bAdd" formaction="/animals/new"                       formmethod="get" type="submit" form="router">Add New Animal</button>  
+    <button class="bAdd" formaction="/"                                  formmethod="get" type="submit" form="router">Return to Animals</button>
+    <form id="router" method="post"></form>
+
+  </div>
+    
+</body>
+</html>
