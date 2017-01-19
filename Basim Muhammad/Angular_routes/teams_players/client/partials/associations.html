@@ -1,0 +1,33 @@
+<div ng-controller='AssociationsController'>
+	
+	<form>
+		<select ng-model='player.name' ng-options='player.name as player.name for player in players' >
+		
+		</select>
+
+		<select ng-model='player.team' ng-options='team.name as team.name for team in teams' >
+		
+		</select>
+
+		<button ng-click='addAssociation(player)'>Add to Team</button>
+	</form>
+
+
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Team</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+
+		<tbody ng-repeat='player in players track by $index'>
+			<tr>
+				<td> {{player.name}}</td>
+				<td> {{player.team}}</td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>
