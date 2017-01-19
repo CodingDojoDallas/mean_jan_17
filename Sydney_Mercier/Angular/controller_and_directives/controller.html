@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='app'>
+<head>
+	<meta charset="UTF-8">
+	<title>Controller</title>
+	<script src='bower_components/angular/angular.js'></script>
+	<script>
+		var app = angular.module('app', []);
+		app.controller('divController', ['$scope', function($scope){
+			$scope.list = [];
+			$scope.submit = function() {
+				if ($scope.text) {
+					$scope.list.push(this.text);
+					$scope.text = '';
+				}
+			};
+		}]);
+	</script>
+</head>
+<body>
+	<form ng-controller='divController' ng-submit='submit()'>
+<!-- 		<p>Favorite Food <span ng-bind='myFavoriteFood'></span></p> -->
+		<input type='text' ng-model='text' name='text'>
+		<input type='submit' ng-show='text' id='submit' value='Add Food'>
+		<p ng-hide='!text'>Currently typing: <span ng-bind='text'></span></p>
+		<pre ng-if='list.length > 0'>list={{list}}</pre>
+		<div ng-init='list'>
+			<ul>
+				<li ng-repeat='item in list'>{{ item }}</li>
+			</ul>
+		</div>
+	</form> <!-- END OF divController --> 
+</body>
+</html>
+
+<!-- ng-bind  //
+ng-model   //
+ng-repeat   //
+ng-if     //
+ng-hide   //
+ng-show   //
+ng-init  //
+ng-click
+ng-submit  //--> 
