@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" ng-app = 'app'>
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src = 'bower_components/angular/angular.js'>
+  </script>
+  <script>
+  var app = angular.module('app', []);
+  app.controller('myController', ['$scope', function($scope){
+
+    $scope.foodList = ['pizza', 'hamburger'];
+    //printController will show the current $scope
+    $scope.printController = function(test){
+      console.log($scope);
+      console.log(test);
+    }
+
+    $scope.addFood = function(food){
+        $scope.foodList.push(food);
+
+        console.log($scope.foodList);
+    }
+
+  }]);
+  </script>
+</head>
+<body>
+    <div ng-controller = "myController" id = "myController">
+      <label>Favorite Food</label>
+      <input type="text" ng-model = 'favoriteFood'>
+      <button ng-click = "addFood(favoriteFood);">Add Food</button>
+
+      <br>
+      <p>Currently Typing: {{favoriteFood}}</p>
+
+      <input type="text" ng-model = 'foodFilter'>
+      <br>
+      <select id="foodList" size="10" >
+            <option ng-repeat= "food in foodList | filter:foodFilter " value="{{food}}">{{food}}</option>
+      </select>
+    </div>
+</body>
+</html>
