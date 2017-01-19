@@ -1,0 +1,16 @@
+<div ng-controller='UsersController'>
+  <table>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Favorite Language</th>
+    </tr>
+    <tr ng-repeat='x in users track by $index'>
+      <td>{{ x.first_name }}</td>
+      <td>{{ x.last_name }}</td>
+      <td>{{ x.fav_lang }}</td>
+    </tr>
+  </table>
+
+
+</div> 
