@@ -6,7 +6,17 @@
 	<script src = 'bower_components/angular/angular.js'></script>
 	<script type="text/javascript">
 		var app = angular.module('app', []);
+
+		app.controller('PlayersController', ['$scope', function($scope) {
+			// javascript that controls the Player view goes here:
+		}]);
+
+		app.controller('PlayersController', ['$scope', 'newinjectable', function($scope, "custom name of new injectable") {
+			// javascript that controls the Player view goes here:
+		}]);
 		console.log(app);
+
+
 	</script>
 </head>
 <body>
