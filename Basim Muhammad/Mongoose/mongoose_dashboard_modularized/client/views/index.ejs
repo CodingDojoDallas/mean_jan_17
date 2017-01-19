@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Index</title>
+	</head>
+	<body>
+		<% for (x in animals) { %>
+			<div>
+				Name: <%= animals[x].name %> 
+				Type: <%= animals[x].type %>
+				Age: <%= animals[x].age %>
+				<a href="/mongooses/<%= animals[x]._id %>" >Show this mongoose</a>
+
+				<a href="/mongooses/destroy/<%= animals[x]._id %> ">Delete</a>
+			</div>
+		<% } %>
+	</body>
+</html>
