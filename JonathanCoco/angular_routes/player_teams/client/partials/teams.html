@@ -1,0 +1,29 @@
+<style>
+td
+{border-left:1px solid black;
+border-top:1px solid black;}
+table
+{border-right:1px solid black;
+border-bottom:1px solid black;}
+</style>
+
+<div ng-controller='TeamsController'>
+  <label>Player:</label>
+  <input type="text" ng-model = 'team'>
+
+  <button ng-click = "addTeam(team);">Add New Team</button>
+  <br> <br> <br>
+
+  <table>
+      <thead>
+          <tr>
+             <td><a href="" ng-click="sortType = 'team'; sortReverse = !sortReverse">Team Name</a></td>
+             <td>Actions</td>
+          <tr>
+      </thead>
+      <tr ng-repeat = "team in teams | orderBy:sortType:sortReverse  ">
+          <td><a href="#/{{team.team}}" ng-bind = 'team.team'> </a></td>
+          <td><button ng-click = "deleteAssociation($index);">Clear Assignment</button></td>
+      </tr>
+  </table>
+</div>

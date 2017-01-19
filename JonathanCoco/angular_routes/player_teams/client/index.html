@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+  <head>
+    <title></title>
+ <!-- THESE TWO VERSIONS BELOW MUST MATCH (good thing bower will catch that for us, but be aware if you are using CDN's)!!! -->
+    <script src="angular/angular.js"></script>
+    <script src="angular-route/angular-route.js"></script>
+    <script src="angular-messages/angular-messages.js"></script>
+    <script>
+    //  inject the ngRoute dependency in the module.
+    var myApp = angular.module('myApp', ['ngRoute','ngMessages']);
+
+    myApp.factory('playerFactory', function (){
+        // The factory is nothing more than a function that returns an object
+        var players = [
+            {player:'Jonathan Coco'}
+        ];
+
+        var factory = {};
+        // Add a getStudents key to the factory object with a value of a function.
+        factory.getPlayers = function (callback){
+
+            callback(players);
+        }
+
+        factory.addPlayer = function(player){
+
+            player = {player:player};
+
+            players.push(player);
+
+        }
+
+        factory.deletePlayer= function(index, callback){
+
+            players.splice(index, 1);
+
+        }
+
+        // Most important step: return the object so it can be used by the rest of our angular code
+        return factory;
+    });
+
+    myApp.factory('teamFactory', function (){
+        // The factory is nothing more than a function that returns an object
+        var teams = [
+            {team:'Bolton Bears'}
+        ];
+
+        var factory = {};
+        // Add a getStudents key to the factory object with a value of a function.
+        factory.getTeams = function (callback){
+
+            callback(teams);
+        }
+
+        factory.addTeam = function(team){
+
+            team = {team:team};
+
+            teams.push(team);
+
+        }
+
+        factory.deleteTeam= function(index, callback){
+
+            teams.splice(index, 1);
+
+        }
+
+        // Most important step: return the object so it can be used by the rest of our angular code
+        return factory;
+    });
+
+
+
+
+    // see the following on stack overflow to describe why this is needed
+    // http://stackoverflow.com/questions/41272314/angular-all-slashes-in-url-changed-to-2f
+
+    myApp.config(['$locationProvider', function($locationProvider) {
+      $locationProvider.hashPrefix('');
+    }]);
+
+    //  use the config method to set up routing:
+    myApp.config(function ($routeProvider) {
+      $routeProvider
+        .when('/',{
+            templateUrl: 'partials/players.html',
+        })
+        .when('/players',{
+            templateUrl: 'partials/players.html'
+        })
+        .when('/teams',{
+            templateUrl: 'partials/teams.html'
+        })
+        .when('/associations',{
+            templateUrl: 'partials/associations.html'
+        })
+        .when('/:teamname',{
+            templateUrl: 'partials/team.html',
+        })
+        .otherwise({
+          redirectTo: '/'
+        });
+    });
+
+    //  build the controllers
+    myApp.controller('PlayersController', ['$scope', 'playerFactory', '$location',  function ($scope, playerFactory, $location){
+      // we don't need a factory for this demo, it wouldn't make a difference if we did.
+        $scope.sortType     = 'player'; // set the default sort type
+        $scope.sortReverse  = false;  // set the default sort order
+
+        $scope.players = [];
+
+        playerFactory.getPlayers(function(data) {
+            $scope.players = data
+        });
+
+        $scope.addPlayer = function(player){
+            playerFactory.addPlayer(player, function(data) { $scope.players = data })
+        }
+
+        $scope.deletePlayer = function(index){
+            playerFactory.deletePlayer(index, function(data) { $scope.players = data })
+        }
+
+    }])
+
+    //  build the controllers
+    myApp.controller('TeamsController', ['$scope', 'teamFactory', '$location',  function ($scope, teamFactory, $location){
+      // we don't need a factory for this demo, it wouldn't make a difference if we did.
+        $scope.sortType     = 'team'; // set the default sort type
+        $scope.sortReverse  = false;  // set the default sort order
+
+        $scope.teams = [];
+
+        teamFactory.getTeams(function(data) {
+            $scope.teams = data
+        });
+
+        $scope.addTeam = function(team){
+            teamFactory.addTeam(team, function(data) { $scope.teams = data })
+        }
+
+        $scope.deleteTeam = function(index){
+            teamFactory.deleteTeam(index, function(data) { $scope.teams = data })
+        }
+
+    }])
+
+    //  build the controllers
+    myApp.controller('AssociationsController', ['$scope', 'teamFactory', 'playerFactory', '$location',  function ($scope, teamFactory, playerFactory, $location){
+      // we don't need a factory for this demo, it wouldn't make a difference if we did.
+        $scope.sortType     = 'team'; // set the default sort type
+        $scope.sortReverse  = false;  // set the default sort order
+
+        $scope.assocPlayerTeam = [];
+        $scope.teams = [];
+        $scope.players = [];
+
+        playerFactory.getPlayers(function(data) {
+            $scope.players = data
+        });
+
+        teamFactory.getTeams(function(data) {
+            $scope.teams = data
+        });
+
+        $scope.addAssoc = function(player, team){
+
+            console.log(player);
+
+            assoc = { player:player, team:team};
+
+            console.log(assoc);
+
+            $scope.assocPlayerTeam.push(assoc);
+        }
+
+        $scope.deleteAssociation= function(index){
+            $scope.assocPlayerTeam.splice(index, 1);
+        }
+
+    }])
+
+    //  build the controllers
+    myApp.controller('TeamController', ['$scope', 'teamFactory', '$routeParams',  function ($scope, teamFactory, $routeParams){
+        console.log($routeParams);
+
+        $scope.teamname = $routeParams.teamname;
+
+    }])
+
+
+    </script>
+  </head>
+  <body>
+
+    <div ng-app='myApp'>
+       <a href="#/players">Players</a> | <a href="#/teams">Teams</a> | <a href="#/associations">Associations</a>
+       <br>
+       <br>
+       <div ng-view="">
+       </div>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,32 @@
+<div ng-controller='CustomizeUsersController'>
+  <label>First Name:</label>
+  <input type="text" ng-model = 'firstName'><br>
+
+  <label>Last Name:</label>
+  <input type="text" ng-model = 'lastName'><br>
+
+  <label>Language:</label>
+  <input type="text" ng-model = 'language'><br>
+
+  <button ng-click = "addUser(firstName, lastName,language);">Add User</button>
+  <br> <br> <br>
+
+  <input type="text" ng-model = 'userFilter'>   <br>
+
+  <table>
+      <thead>
+          <tr>
+              <td><a href="" ng-click="sortType = 'first_name'; sortReverse = !sortReverse">First Name</a></td>
+              <td><a href="" ng-click="sortType = 'last_name'; sortReverse = !sortReverse">Last Name</a></td>
+              <td><a href="" ng-click="sortType = 'language'; sortReverse = !sortReverse">Language</a></td>
+             <td>Actions</td>
+          <tr>
+      </thead>
+      <tr ng-repeat = "user in users | orderBy:sortType:sortReverse | filter:userFilter ">
+          <td>{{user.first_name}}</td>
+          <td>{{user.last_name}}</td>
+          <td>{{user.language}}</td>
+          <td><button ng-click = "deleteUser($index);">Delete User</button></td>
+      </tr>
+  </table>
+</div>
