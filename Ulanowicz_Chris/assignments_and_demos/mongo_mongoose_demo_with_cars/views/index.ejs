@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>car demo</title>
+</head>
+<body>
+ 	<form action="/cars" method="post">
+ 		<label>Year</label><input type="text" name="year" />
+ 		<label>Make</label><input type="text" name="make">
+ 		<label>Model</label><input type="text" name="model">
+ 		<input type="submit" name="Add car">
+ 	</form>
+ 	<% for(x in cars){ %>
+ 		<p><%= cars[x].year %></p>
+ 		<p><%= cars[x].make %></p>
+ 		<p><%= cars[x].model %></p>
+ 		<form action="cars/remove" method="post">
+ 			<input type="hidden" name="_id" value="<%= cars[x]._id %>">
+ 			<input type="submit" value="Delete">
+ 		</form>
+ 	<% } %>
+</body>
+</html>

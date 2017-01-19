@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Group Chat</title>
+	<link rel="stylesheet" type="text/css" href="style.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script type="text/javascript" src="socket.io/socket.io.js"></script>
+	<script>
+		$(document).ready(function(){
+			console.log("jquery is on");
+			var socket = io.connect();
+			var name = prompt("Please enter your name: ");
+			socket.emit("got_new_user", {name: name});
+			$("#container").css("display", "block");
+			socket.on("added_user", function(data){
+				// console.log(data);
+				for(var i=0;i<data.messages.length;i++){
+					$("#chat").append(data.messages[i]);
+				}
+			})
+			socket.on("update_chat", function(data){
+				console.log(data);
+				$("#chat").append(data.message);
+			})
+			$("form").submit(function(){
+				var form_message = "<p>" + name + " says: " + $("#message").val() + "</p>";
+				console.log(form_message);
+				socket.emit("new_message", {message: form_message});
+				return false;
+			})
+		})
+	</script>
+
+</head>
+<body>
+	<div id="container">
+		<h1>Conversation Board</h1>
+		<div id="chat">
+			
+		</div>
+		<form>
+			<input type="text" id="message" name="message" placeholder="enter message here" />
+			<input type="submit" name="send" />
+		</form>
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
