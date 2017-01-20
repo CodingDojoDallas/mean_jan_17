@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html ng-app='app'>
+<head>
+  <title></title>
+  <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js'></script>
+  <script type="text/javascript" src='app.js'></script>
+</head>
+<body>
+
+  <div ng-controller='divController'>
+    <p ng-bind='myName'> </p>
+    {{ myName }}
+    <p>My favorite language is {{ myFavoriteLanguage }}</p>
+    <p>{{ myFavoriteJSLibrary }} can be a pain in the ass sometimes, but it's probably because I just don't know it as well as I want to.  I'm sure <span ng-bind='myFavoriteJSLibrary'></span> will get easier the more I use it</p>
+  </div>
+
+</body>
+</html>
