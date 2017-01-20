@@ -1,0 +1,31 @@
+<div ng-controller='userListsController as userControl'>
+  <br />
+  <fieldset>
+    <legend>Users Controller</legend>
+
+      <label>First Name: <input type="text" ng-model="userControl.newUser.fname"></label>  
+      <label>Last Name:  <input type="text" ng-model="userControl.newUser.lname"></label>  
+      <span>
+      <label>Favorite Language: <input type="text" ng-model="userControl.newUser.lang"></label>  
+      <input type="submit" value="Create User" ng-click='userControl.create(userControl.newUser)'>
+      </span>
+      <br /><br />
+      <table border="1" cellpadding="4" bordercollapse="0">
+        <tr>
+          <td>First Name</td>
+          <td>Last Name</td>
+          <td>Language</td>
+          <td>Actions</td>
+        </tr>
+        <tr ng-repeat="user in userControl.users">
+          <td>{{user.fname}}</td>
+          <td>{{user.lname}}</td>
+          <td>{{user.lang}}</td>
+          <td>
+            <button ng-click='userControl.delete(user)'>Delete User</button>
+          </td>
+        </tr>
+      </table>
+
+  </fieldset>
+</div>
