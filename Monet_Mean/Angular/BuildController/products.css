@@ -1,0 +1,16 @@
+#left_side{
+			display: inline-block;
+			width: 40%;
+		}
+		#right_side{
+			display: inline-block;
+			vertical-align: top;
+			width: 25%;
+		}
+		ul{
+			border: 1px solid black;
+			padding: 15px 25px;
+		}
+		li{
+			list-style: none;
+		}

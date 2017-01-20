@@ -1,0 +1,45 @@
+<html ng-app="app">
+<head>
+	<title>Controlling Users Assignment</title>
+	<script src="bower_components/angular/angular.js"></script>
+	<script src="user.js"></script>
+	</script>
+	<style type="text/css">
+		table{
+			border: 2px solid black;
+			padding: 5px;
+		}
+		th, td{
+			border: 1px solid green;
+			padding: 3px;
+		}
+
+	</style>
+</head>
+<body>
+	<div ng-controller="userController">
+		<form>
+			<label>First Name: <input type="text" ng-model="newUser.fname"></label>
+			<label>Last Name:<input type="text" ng-model="newUser.lname"></label>
+			<label>Favorite Language: <input type="text" ng-model="newUser.language"></label>
+			<input type="submit" value="Create User" ng-click="addUser()">
+		</form>
+
+		<table>
+			<tr>
+				<th ng-click="orderByThis('fname')">First Name</th>
+				<th ng-click="orderByThis('lname')">Last Name</th>
+				<th ng-click="orderByThis('language')">Language</th>
+				<th>Action</th>
+			</tr>
+			<tr ng-repeat="user in users | orderBy: theOrderBy">
+				<td>{{user.fname}}</td>
+				<td>{{user.lname}}</td>
+				<td>{{user.language}}</td>
+
+				<td><button ng-click="deleteUser(user)">Delete User</button></td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>
