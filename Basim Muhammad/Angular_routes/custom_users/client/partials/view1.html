@@ -1,0 +1,26 @@
+<div ng-controller='CustomizeUsersController'>
+	<form>
+		First Name: <input type="text" ng-model='user.name'>
+		Age: <input type="number" ng-model='user.age'>
+		<button ng-click='addUser(user)'>Add User</button>
+	</form>
+
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Age</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+
+		<tbody ng-repeat='user in users track by $index'>
+			<tr>
+				<td>{{user.name}}</td>
+				<td>{{user.age}}</td>
+				<td><button ng-click='delete($index)'>Delete</button></td>
+			</tr>
+		</tbody>
+	</table>
+	
+</div>
