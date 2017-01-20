@@ -1,0 +1,16 @@
+<div ng-controller='customizeUsersController as userControl'>
+      <br /><br />
+      <table border="1" cellpadding="4" bordercollapse="0">
+        <tr>
+          <td>First Name</td>
+          <td>Last Name</td>
+          <td>Language</td>
+        </tr>
+        <tr ng-repeat="user in userControl.users">
+          <td>{{user.fname}}</td>
+          <td>{{user.lname}}</td>
+          <td>{{user.lang}}</td>
+        </tr>
+      </table>
+
+</div>

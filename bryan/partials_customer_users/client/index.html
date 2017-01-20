@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html ng-app='myApp'> 
+  <head>
+    <title></title>
+    <script src="angular/angular.js"></script>
+    <script src="angular-route/angular-route.js"></script>
+    <script>
+      var myApp = angular.module('myApp', ['ngRoute']);
+    
+      myApp.config(function($routeProvider) {
+        $routeProvider
+          .when('/',{
+            templateUrl: 'partials/userList.html',
+            controller:  'userListsController'
+          })
+          .when('/list',{
+            templateUrl: 'partials/customizeUsers.html',
+            controller:  'customizeUsersController'
+          })
+          .otherwise({
+            redirectTo: '/'
+          });
+      });
+
+      myApp.factory('userFactory', function (){
+        var users = [
+          { fname: 'Bryan', lname: 'Utley', lang: 'Javascript'},
+          { fname: 'Cindy', lname: 'Rojas', lang: 'Ruby'},
+          { fname: 'Bobby', lname: 'Smith', lang: 'Python'}          
+        ]
+        var factory = {};
+
+        factory.index = function(callback) {
+          callback(users);
+        }
+
+        factory.create = function(user, callback) {
+          users.push(user);
+          callback();
+        }
+
+        factory.delete = function(user) {
+          users.splice(users.indexOf(user), 1);
+        }
+
+        factory.show = function(userid, callback) {
+          callback(user);
+        }
+
+        return factory;
+      });
+  
+      myApp.controller('userListsController', ['userFactory', function(userFactory){
+        var self = this;
+        
+        this.index = function() {
+          userFactory.index (function(data) {
+            self.users = data;
+          })
+        }
+        this.index();
+
+        this.create = function(newUser) {
+          console.log(newUser);
+          userFactory.create(newUser, function () {
+            self.newUser = {};
+          })
+        }
+
+        this.delete = function(user) {
+          userFactory.delete(user);
+        }
+        
+      }]);
+      
+      myApp.controller('customizeUsersController', ['userFactory', function(userFactory){
+        var self = this;
+        
+        this.index = function() {
+          userFactory.index (function(data) {
+            self.users = data;
+          })
+        }
+        this.index();
+        
+      }]);
+      
+    </script>
+  </head>
+  <body>
+    <div ng-app='myApp'>
+        <a href="#!/">Customize Users</a> | <a href="#!/list">User List</a>
+        <div ng-view="">
+        </div>
+    </div>
+  </body>
+</html>
