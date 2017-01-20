@@ -1,0 +1,27 @@
+<div ng-controller='CustomController'>
+  <div ng-if='error'>{{ error }}</div>
+  <fieldset>
+    <legend>Users Controller</legend>
+    <form ng-submit='createUser()'>
+      <label> First Name: <input type="text" ng-model='newUser.first_name'></label>
+      <label> Last Name: <input type="text" ng-model='newUser.last_name'></label>
+      <label>Favorite Language: <input type="text" ng-model='newUser.fav_lang'></label>
+      <input type="submit" name="create" value="Create User">
+    </form>
+    <table>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Favorite Language</th>
+        <th>Actions</th>
+      </tr>
+      <tr ng-repeat='x in users track by $index'>
+        <td>{{ x.first_name }}</td>
+        <td>{{ x.last_name }}</td>
+        <td>{{ x.fav_lang }}</td>
+        <td><input type="submit" ng-click='destroyUser($index)' value="delete"></td>
+      </tr>
+    </table>
+  </fieldset>
+
+</div> 
