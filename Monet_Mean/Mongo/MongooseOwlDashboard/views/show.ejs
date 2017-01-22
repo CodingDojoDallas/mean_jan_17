@@ -1,0 +1,14 @@
+<h2>Show the <%= owl.color %> Owl</h2>
+
+	<h4>Color: <%= owl.color %></h4>
+	<h4>Size: <%= owl.size %></h4>
+	<h4>Age: <%= owl.age %></h4>
+	<h4>Cuteness (1 to 5... 5 being super uber cutiepie Cuteness) : <%= owl.cuteness %></h4>
+
+	<form action="/owls/destroy/<%= owl.id %>" method="post">
+		<input type="submit" value="Delete Owl">
+	</form>
+
+
+
+<a href="/">Main Owl List</a>

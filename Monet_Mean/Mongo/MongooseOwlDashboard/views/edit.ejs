@@ -1,0 +1,34 @@
+<h2>Edit this Owl </h2>
+
+
+<form action="/owls/<%= owl.id %>" method="post">
+	<label>Color: 
+		<input type="text" name="color" value="<%= owl.color %>">
+	</label><br>
+	<label>Size: 
+		<select name="size" selected= "<%= owl.size %>">
+			<option value="Small"<% if (owl.size == "Small"){ %>selected<%}%>>Small</option>
+			<option value="Med"<% if (owl.size == "Med"){ %>selected<%}%>>Medium</option>
+			<option value="Lrg" <% if (owl.size == "Lrg"){ %>selected<%}%>>Large</option>
+		</select>
+	</label><br>
+	<label>Age:  
+		<select name="age">
+			<option value="Baby"<% if (owl.age == "Baby"){ %>selected<%}%>>Baby</option>
+			<option value="Teen"<% if (owl.age == "Teen"){ %>selected<%}%>>Teen</option>
+			<option value="Adult"<% if (owl.age == "Adult"){ %>selected<%}%>>Adult</option>
+			<option value="Elder"<% if (owl.age == "Elder"){ %>selected<%}%>>Elder</option>
+		</select>
+	</label><br>
+	<label>Cuteness (1 to 5, 5 being super uber cutiepie Cuteness) : 
+		<input type="radio" name="cuteness" value="1" <% if (owl.cuteness == "1"){ %>checked<%}%>>1
+		<input type="radio" name="cuteness" value="2" <% if (owl.cuteness == "2"){ %>checked<%}%>>2
+		<input type="radio" name="cuteness" value="3" <% if (owl.cuteness == "3"){ %>checked<%}%>>3
+		<input type="radio" name="cuteness" value="4" <% if (owl.cuteness == "4"){ %>checked<%}%>>4
+		<input type="radio" name="cuteness" value="5" <% if (owl.cuteness == "5"){ %>checked<%}%>>5
+	</label><br>
+	<input type="submit" value="Edit Owl">
+</form>
+
+
+<a href="/">Main Owl List</a>

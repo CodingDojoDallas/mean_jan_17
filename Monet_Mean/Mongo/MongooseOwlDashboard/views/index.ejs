@@ -1,0 +1,13 @@
+<h2>List the Owls Page Test</h2>
+<a href="/owls/new">Creat a New Owl</a>
+<br><br><br>
+
+<table>
+<% for (index in owls) { %>
+<tr>
+	<td><%= owls[index].color%></td>
+	<td><%= owls[index].cuteness%></td>
+	<td><a href="/owls/edit/<%=owls[index].id%>">Edit</a>  <a href="/owls/<%=owls[index].id%>">Show</a>  <form action="/owls/destroy/<%=owls[index].id%>" method="post"><input type="submit" value = "Delete"></form></td>
+</tr>
+<% } %>
+</table>
