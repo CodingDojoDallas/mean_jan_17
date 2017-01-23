@@ -1,0 +1,28 @@
+<!DOCTYPE html ng-app="app">
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <script src='angular/angular.js'></script>
+  <script src='angular-route/angular-route.js'></script>
+  <script src='angular-post-fix/postfix.js'></script>
+  <script src='angular-cookies/angular-cookies.js'></script>
+  <script src='assets/app.js'></script>
+  <script src='assets/factories/userFactory.js'></script>
+  <script src='assets/factories/messageFactory.js'></script>
+  <script src='assets/controllers/indexController.js'></script>
+  <script src='assets/controllers/loginController.js'></script>
+  <link rel="stylesheet" type="text/css" href="assets/stylesheets/style.css">
+
+  <title>Mean Wall</title>
+</head>
+
+<body>
+    <h1>Mean Wall</h1>
+    <div ng-app='app'>
+        <div ng-view>
+        </div>
+    </div>
+</body>
+
+</html>
