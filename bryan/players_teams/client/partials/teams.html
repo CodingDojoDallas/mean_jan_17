@@ -1,0 +1,27 @@
+<div ng-controller='teamsController as teamControl'>
+  <br />
+  <fieldset>
+    <legend>Users Controller</legend>
+
+      <span>
+        <label>First Name: <input type="text" ng-model="teamControl.newTeam.name"></label>  
+        <input type="submit" value="Create User" ng-click='teamControl.create(teamControl.newTeam)'>
+      </span>
+
+      <br /><br />
+      
+      <table border="1" cellpadding="4" bordercollapse="0">
+        <tr>
+          <td>Name</td>
+          <td>Actions</td>
+        </tr>
+        <tr ng-repeat="team in teamControl.teams">
+          <td>{{team.name}}</td>
+          <td>
+            <button ng-click='teamControl.delete(team)'>Delete Player</button>
+          </td>
+        </tr>
+      </table>
+
+  </fieldset>
+</div>

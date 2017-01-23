@@ -1,0 +1,38 @@
+<div class="title">
+  <div class="row">
+    <h4 class="col-xs-6 col-sm-4">MEAN Stack</h4>
+    <h2 class="col-xs-6 col-sm-4" style="text-align: center;">All Friends</h2>
+    <h4 class="col-xs-6 col-sm-4" style="text-align: right;">by: Bryan Utley</h4>
+  </div>
+</div>
+
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Birthday</th>
+        <th>Show</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="friend in nc.friends | filter: filter_name">
+        <td>{{friend.firstName}} {{friend.lastName}}</td>
+        <td>{{friend.birthDate | date: 'MMM d, yyyy'}}</td>
+        <td>
+          <a href="#!/show/{{friend._id}}" class="btn btn-info btn-xs">Show</a>
+        </td>
+        <td>
+          <a href="#!/update/{{friend._id}}" class="btn btn-warning btn-xs">Update</a>
+        </td>
+        <td>
+          <a ng-click='delete(friend._id)' class="btn btn-danger btn-xs">Delete</a>
+        </td>
+      </tr>
+    </tbody>
+</table>
+<br />
+<input type="text" placeholder="Filter:" ng-model='filter_name'>
+<br /><br />
+<a href="#!/new" class="btn btn-success">Add a New Friend</a>

@@ -1,0 +1,32 @@
+.boldit {
+  font-weight: bold;
+}
+
+.input-group {
+  margin-bottom: 12px;
+}
+.input-group-addon {
+  width: 100px;
+  text-align: left;
+}
+
+.title {
+  margin: 12px 0;
+  background-color: lightgrey;
+  border-radius: 8px;
+  padding: 10px;
+}
+h2, h3 {
+  margin: 0;
+  color: red;
+  font-size: 40px;
+  font-weight: bold;
+  text-shadow: 2px 2px 2px black;
+}
+h3 {
+  font-size: 30px;
+}
+
+h4 {
+  margin-top: 14px;
+}
