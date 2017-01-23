@@ -32,7 +32,6 @@ app.factory('friendsFactory', ['$http', function($http) {
 
     this.delete = function(id, callback){
         $http.delete('/friends/'+id).then(function(){
-          console.log('friend deleted');
           callback();
         })
     };

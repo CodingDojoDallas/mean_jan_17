@@ -18,8 +18,9 @@ app.controller('newController', function(friendsFactory, $location, $routeParams
 	};
 
 	self.delete = function(id) {
+		console.log("delete clicked");
 		friendsFactory.delete(id, function() {
-			index();
+			self.index();
 		});
 	}
 

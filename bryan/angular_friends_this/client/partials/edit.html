@@ -1,8 +1,8 @@
 <div class="title">
   <div class="row">
-    <h4 class="col-xs-6 col-sm-4">MEAN Stack</h4>
-    <h3 class="col-xs-6 col-sm-4" style="text-align: center;">Update Friend</h2>
-    <h4 class="col-xs-6 col-sm-4" style="text-align: right;">by: Bryan Utley</h4>
+    <h4 class="col-md-4">MEAN Stack</h4>
+    <h3 class="col-md-4" style="text-align: center;">Update Friend</h2>
+    <h4 class="col-md-4" style="text-align: right;">by: Bryan Utley</h4>
   </div>
 </div>
 
@@ -20,7 +20,12 @@
 
   <div class="input-group">
     <span class="input-group-addon" id="sizing-addon2">Birthday</span>
-    <input type="date" name="birthDate" datetime="yyyy-MM-dd HH:mm:ss" ng-model='ec.friend.birthDate'
+
+
+    {{ec.friend.setdate(birthDate)}}
+
+
+    <input type="date" name="birthDate" datetime="yyyy-MM-dd" ng-model='ec.friend.birthDate'
            class="form-control boldit" aria-describedby="sizing-addon2"
            value="{{ec.friend.birthDate | date: 'yyyy-MM-dd'}}" required>
   </div>
