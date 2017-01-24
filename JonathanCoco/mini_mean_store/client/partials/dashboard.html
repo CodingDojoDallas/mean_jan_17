@@ -1,0 +1,56 @@
+<div ng-controller='headerController'>
+    <ul>
+        <li>Dashboard</li> |
+        <li><a href="" ng-click="products()">Products</a></li> |
+        <li><a href="" ng-click="customer()">Customers</a></li> |
+        <li><a href="" ng-click="orders()">Orders</a></li> |
+        <li><a href="" ng-click="settings()">Settings</a></li>
+    </ul>
+    <hr>
+</div>
+
+<div>
+    <input type="text" ng-model = 'dashboardFilter'>   <br>
+</div>
+
+
+<h3>Products</h3>
+<div ng-controller='productController'   ng-init="product_dashboard_limit = 3">
+    <div class="products" ng-repeat  = "product in products | filter:dashboardFilter | limitTo: product_dashboard_limit : product_start ">
+        <img src="{{product.image}}" alt="image" height="200" width="200">
+        <p>{{product.name}}</p>
+        <p>({{product.quantity}} left)</p>
+    </div>
+
+    <div>
+        <a href="" ng-click="productDashboardMore()">More..</a>
+    </div>
+</div>
+
+<h3>Recent Orders</h3>
+<div ng-controller='orderController'>
+    <div ng-repeat  = "order in orders | orderBy: 'created_at':true | limitTo: order_limit : order_start  ">
+        <p>{{order._customer.name}} purchased {{order.quantity}} {{order._product.name}}... ({{order.createdAt | datespan}})</p>
+    </div>
+
+    <div ng-if="show_all">
+        <a href="" ng-click="showAllOrders()">Show Less...</a>
+    </div>
+    <div ng-if="show_less">
+        <a href="" ng-click="showAllOrders()">Show All...</a>
+    </div>
+</div>
+
+<h3>Recent Customers</h3>
+<div ng-controller='customerController'>
+    <div ng-repeat  = "customer in customers | orderBy: 'created_at':true | limitTo: customer_limit : customer_start ">
+        <p>{{customer.name}} joined the store. ({{customer.created_at | datespan}})</p>
+    </div>
+
+    <div ng-if="show_all">
+        <a href="" ng-click="showAllCustomers()">Show Less...</a>
+    </div>
+    <div ng-if="show_less">
+        <a href="" ng-click="showAllCustomers()">Show All...</a>
+    </div>
+</div>
