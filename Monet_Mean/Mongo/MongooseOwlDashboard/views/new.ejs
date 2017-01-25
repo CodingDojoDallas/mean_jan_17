@@ -1,0 +1,33 @@
+<h2>Create NEW Owl</h2>
+
+<form action="/owls" method="post">
+	<label>Color: 
+		<input type="text" name="color">
+	</label><br>
+	<label>Size: 
+		<select name="size">
+			<option value="Small">Small</option>
+			<option value="Med">Medium</option>
+			<option value="Lrg">Large</option>
+		</select>
+	</label><br>
+	<label>Age:  
+		<select name="age">
+			<option value="Baby">Baby</option>
+			<option value="Teen">Teen</option>
+			<option value="Adult">Adult</option>
+			<option value="Elder">Elder</option>
+		</select>
+	</label><br>
+	<label>Cuteness (1 to 5, 5 being super uber cutiepie Cuteness) : 
+		<input type="radio" name="cuteness" value="1">1
+		<input type="radio" name="cuteness" value="2">2
+		<input type="radio" name="cuteness" value="3">3
+		<input type="radio" name="cuteness" value="4">4
+		<input type="radio" name="cuteness" value="5">5
+	</label><br>
+	<input type="submit" value="Enter New Owl">
+</form>
+
+
+<a href="/">Main Owl List</a>
