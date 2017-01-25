@@ -1,0 +1,23 @@
+<h1>Add A New Friend</h1>
+<form ng-submit='create()' name='friendForm'>
+
+  <div class="input-group">
+    <span class="input-group-addon" id="sizing-addon2">First Name</span>
+    <input type="text"  name="firstName" ng-model='newfriend.firstName' class="form-control boldit" aria-describedby="sizing-addon2" required>
+  </div>
+
+  <div class="input-group">
+    <span class="input-group-addon" id="sizing-addon2">Last Name</span>
+    <input type="text" name="lastName" ng-model='newfriend.lastName' class="form-control boldit" aria-describedby="sizing-addon2" value="{{friend.lastName}}" required>
+  </div>
+
+  <div class="input-group">
+    <span class="input-group-addon" id="sizing-addon2">Birthday</span>
+    <input type="date" name="birthDate" ng-model='newfriend.birthDate' class="form-control boldit" aria-describedby="sizing-addon2" value="{{friend.birthDate | date}}" required>
+  </div>
+
+  <button type="submit" class="btn btn-success">Create</button>
+
+  <a href="#!/"class="btn btn-primary">Show All Friends</a>
+
+</form>

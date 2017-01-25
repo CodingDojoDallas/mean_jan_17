@@ -1,0 +1,38 @@
+<div class="title">
+  <div class="row">
+    <h4 class="col-md-4">MEAN Stack</h4>
+    <h3 class="col-md-4" style="text-align: center;">Update Friend</h2>
+    <h4 class="col-md-4" style="text-align: right;">by: Bryan Utley</h4>
+  </div>
+</div>
+
+<form ng-submit="ec.update()" name='friendForm'>
+
+  <div class="input-group">
+    <span class="input-group-addon" id="sizing-addon2">First Name</span>
+    <input type="text"  name="firstName" ng-model='ec.friend.firstName' class="form-control boldit" aria-describedby="sizing-addon2" required>
+  </div>
+
+  <div class="input-group">
+    <span class="input-group-addon" id="sizing-addon2">Last Name</span>
+    <input type="text" name="lastName" ng-model='ec.friend.lastName' class="form-control boldit" aria-describedby="sizing-addon2" value="{{friend.lastName}}" required>
+  </div>
+
+  <div class="input-group">
+    <span class="input-group-addon" id="sizing-addon2">Birthday</span>
+
+
+    {{ec.friend.setdate(birthDate)}}
+
+
+    <input type="date" name="birthDate" datetime="yyyy-MM-dd" ng-model='ec.friend.birthDate'
+           class="form-control boldit" aria-describedby="sizing-addon2"
+           value="{{ec.friend.birthDate | date: 'yyyy-MM-dd'}}" required>
+  </div>
+
+  <button type="submit" class="btn btn-info">Update Info</button>
+
+  <a href="#!/new" class="btn btn-success">Add a New Friend</a>
+  <a href="#!/"class="btn btn-primary">Show All Friends</a>
+
+</form>

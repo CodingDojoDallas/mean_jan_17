@@ -1,0 +1,36 @@
+<style type="text/css">
+	label {
+		display: block;
+		/*width: 160px;*/
+		padding: 5px;
+	}
+	.errormsg {
+		color: red;
+	}
+</style>
+<form ng-submit="lC.register()">
+	<fieldset>
+		<legend>Registration</legend>
+
+		<label>Email:
+			<input type="email" ng-model="lC.newUser.email">
+			<span class="errormsg" ng-bind="lC.registerErrors.email"></span>
+		</label>
+
+		<label>First Name: <input type="text" ng-model="lC.newUser.first_name"> <span class="errormsg" ng-bind="lC.registerErrors.first_name"></span></label>
+		<label>Last Name: <input type="text" ng-model="lC.newUser.last_name"> <span class="errormsg" ng-bind="lC.registerErrors.last_name"></span></label>
+		<label>Password: <input type="password"  ng-model="lC.newUser.password"> <span class="errormsg" ng-bind="lC.registerErrors.password"></span></label>
+		<label>Password Confirm: <input type="password" ng-model="lC.newUser.passwordconfirm"></label>
+		<label>Birthday: <input type="date" ng-model="lC.newUser.birthday"> <span class="errormsg" ng-bind="lC.registerErrors.birthday"></span></label>
+		<button type="submit">Register</button>
+	</fieldset>
+</form>
+<form ng-submit="lC.login()">
+	<fieldset>
+		<legend>Login</legend>
+		<p ng-repeat="error in lC.loginErrors">{{ error }}</p>
+		<label>Email: <input type="email" ng-model="lC.loginAttempt.email"></label>
+		<label>Password: <input type="password" ng-model="lC.loginAttempt.password"></label>
+		<button type="submit">Login</button>
+	</fieldset>
+</form>

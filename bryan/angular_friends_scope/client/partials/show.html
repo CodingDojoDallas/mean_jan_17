@@ -1,0 +1,31 @@
+<div class="title">
+  <div class="row">
+    <h4 class="col-xs-6 col-sm-4">MEAN Stack</h4>
+    <h3 class="col-xs-6 col-sm-4" style="text-align: center;">Friend Detail</h3>
+    <h4 class="col-xs-6 col-sm-4" style="text-align: right;">by: Bryan Utley</h4>
+  </div>
+</div>
+
+<div class="input-group">
+  <span class="input-group-addon" id="sizing-addon2">First Name</span>
+  <input type="text" class="form-control boldit" aria-describedby="sizing-addon2" value="{{friend.firstName}}" disabled="">
+</div>
+
+<div class="input-group">
+  <span class="input-group-addon" id="sizing-addon2">Last Name</span>
+  <input type="text" class="form-control boldit" aria-describedby="sizing-addon2" value="{{friend.lastName}}" disabled="">
+</div>
+
+<div class="input-group">
+  <span class="input-group-addon" id="sizing-addon2">Birthday</span>
+  <input type="text" class="form-control boldit" aria-describedby="sizing-addon2" value="{{friend.birthDate | date}}" disabled="">
+</div>
+
+<div class="input-group">
+  <span class="input-group-addon" id="sizing-addon2">Added On</span>
+  <input type="text" class="form-control boldit" aria-describedby="sizing-addon2" value="{{friend.createdAt | date}}" disabled="">
+</div>
+
+<a href="#!/new" class="btn btn-success">Add a New Friend</a>
+<a href="#!/" class="btn btn-primary">Show All Friends</a>
+<a href="#!/" class="btn btn-primary">Show All Friends</a>

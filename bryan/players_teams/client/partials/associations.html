@@ -1,0 +1,39 @@
+<div ng-controller='associationsController as assocControl'>
+  <br />
+  <fieldset>
+    <legend>Users Controller</legend>
+
+      <span>
+        
+        <select ng-model="assocControl.player">
+          <option ng-repeat="player in assocControl.players track by $index" value="{{$index}}">{{player.name}}</option>
+        </select>
+
+       <select ng-model="assocControl.team">
+          <option ng-repeat="team in assocControl.teams" value="{{team.name}}">{{team.name}}</option>
+        </select>
+
+        <input type="submit" value="Create User" ng-click='assocControl.create(assocControl.player,assocControl.team)'>
+        
+      </span>
+ 
+      <br /><br />
+
+      <table border="1" cellpadding="4" bordercollapse="0">
+        <tr>
+          <td>Name</td>
+          <td>Team</td>
+          <td>Actions</td>
+        </tr>
+        <tr ng-repeat="player in assocControl.players track by $index">
+          <td>{{player.name}}</td>
+          <td>{{player.team}}</td>
+          <td>
+            <button ng-click='assocControl.delete($index)'>Delete Player</button>
+          </td>
+        </tr>
+      </table>
+
+
+  </fieldset>
+</div>
