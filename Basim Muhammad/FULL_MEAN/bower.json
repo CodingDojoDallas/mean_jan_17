@@ -1,0 +1,17 @@
+{
+  "name": "first_mean",
+  "description": "",
+  "main": "server.js",
+  "authors": [
+    "Basim M <bbmhmmad@yahoo.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

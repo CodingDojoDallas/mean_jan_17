@@ -1,0 +1,17 @@
+<div ng-controller='newController as nc' ng-init="nc.show()">	
+
+<!-- You will attach an ng-model and an ng-submit to your forms (but might want to wait until the next tab, when you have your controllers and factory) -->
+
+<form ng-submit='nc.update(editFriend)'>
+Your Friend is:
+{{nc.friend.name}}
+
+<h2>Edit Name</h2>
+
+<input type="text" ng-model="editFriend.name">
+<input type="submit" value="UPDATE FRIEND">
+
+
+</form>
+
+</div>
