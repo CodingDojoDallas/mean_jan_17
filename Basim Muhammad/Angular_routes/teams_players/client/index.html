@@ -1,0 +1,157 @@
+ <!DOCTYPE html>
+<html ng-app='myApp'> 
+ <head>
+    <title></title>
+ <!-- THESE TWO VERSIONS BELOW MUST MATCH (good thing bower will catch that for us, but be aware if you are using CDN's)!!! -->
+    <script src="angular/angular.js"></script>
+    <script src="angular-route/angular-route.js"></script>
+	<script>
+	    //  inject the ngRoute dependency in the module.
+	    var myApp = angular.module('myApp', ['ngRoute']);
+	    //  use the config method to set up routing:
+	    myApp.config(function ($routeProvider) {
+	      $routeProvider
+	        .when('/',{
+	            templateUrl: 'partials/players.html',
+	        })
+	        .when('/teams',{
+	            templateUrl: 'partials/teams.html',
+	        })
+	        .when('/associations', {
+	        	templateUrl:'partials/associations.html',
+	        })
+	        .otherwise({
+	          redirectTo: '/'
+	        });
+	    });
+
+	    myApp.factory('PlayersFactory',function(){
+
+	    	var factory = {}
+
+	    	factory.players=[{name:'basim', team:''}, {name:'billy',team:''}];
+
+	    	factory.create=function(player){
+	    		factory.players.push(player);
+	    	}
+
+	    	factory.delete=function($index){
+	    		factory.players.splice($index,1)
+	    	}
+
+	    	factory.addAssociation=function(player){
+	    		for (var i =0;i<factory.players.length;i++){
+	    			console.log('This player is ' + factory.players[i])
+	    			console.log(factory.players[i])
+	    			console.log('Created Player is')
+	    			console.log(player)
+	    			if (factory.players[i].name===player.name){
+	    				console.log('Factory player name is ' + factory.players[i].name)
+	    				console.log('Player to add is ' + player.name)
+	    				factory.players[i]=player
+	    				console.log('player changed')
+	    				console.log(factory.players)
+	    			}
+	    		}
+	    	}
+
+	    
+
+	    	return factory
+	    })
+
+	    myApp.factory('TeamsFactory',function(){
+
+	    	var factory = {}
+
+	    	factory.teams=[{name:'seahawks'}, {name:'bills'}];
+
+	    	factory.create=function(team){
+	    		factory.teams.push(team);
+	    	}
+
+	    	factory.delete=function($index){
+	    		factory.teams.splice($index,1)
+	    	}
+
+	    
+
+	    	return factory
+	    })
+	    //  build the controllers
+	    myApp.controller('PlayersController',['$scope', 'PlayersFactory', function ($scope, PlayersFactory) {
+	      	$scope.players=PlayersFactory.players
+	      	console.log($scope.players)
+
+
+      		$scope.addPlayer=function(player){
+    		PlayersFactory.create(player)
+    		$scope.players=PlayersFactory.players
+    		$scope.player={}
+    		console.log($scope.players)
+
+	    	}
+
+	    	$scope.delete=function($index){
+	    		PlayersFactory.delete($index)
+	    		$scope.players=PlayersFactory.players
+    			$scope.player={}
+    			console.log($scope.players)
+	    	}
+
+
+
+
+	    }]);
+	    myApp.controller('TeamsController',['$scope', 'TeamsFactory', function ($scope, TeamsFactory) {
+	      	$scope.teams=TeamsFactory.teams
+	      	console.log($scope.teams)
+
+
+      		$scope.addTeam=function(team){
+    		TeamsFactory.create(team)
+    		$scope.teams=TeamsFactory.teams
+    		$scope.team={}
+    		console.log($scope.teams)
+
+	    	}
+
+	    	$scope.delete=function($index){
+	    		TeamsFactory.delete($index)
+	    		$scope.teams=TeamsFactory.teams
+    			$scope.team={}
+    			console.log($scope.teams)
+	    	}
+
+
+	    }]);
+
+	    myApp.controller('AssociationsController',['$scope','TeamsFactory','PlayersFactory', function($scope,TeamsFactory,PlayersFactory){
+	    	$scope.teams=TeamsFactory.teams
+	    	$scope.players=PlayersFactory.players
+
+	    	$scope.addAssociation=function(player){
+	    		console.log('PLAYER IS...' )
+	    		console.log(player)
+	    		PlayersFactory.addAssociation(player)
+	    		console.log('ASSOCIATION METHOD RAN')
+	    		$scope.players=PlayersFactory.players
+    			$scope.player={}
+    			console.log($scope.players)
+	    	}
+
+
+
+
+
+	    }])
+	</script>
+  	</head>
+	  <body>
+	    <div ng-app='myApp'>
+	        <a href="/#!/">Players</a> | <a href="#!/teams">Teams</a> | <a href="#!/associations">Associations</a>
+	        <div ng-view="">
+	        </div>
+	    </div>
+	  </body>
+</html>

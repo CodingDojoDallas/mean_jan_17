@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+<head>
+	<title>Users Controller</title>
+	<style type="text/css">
+		label {
+			display: block;
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+	<script type="text/javascript">
+		var userApp = angular.module('myApp', []);
+		userApp.controller('usersController', function($scope){
+			$scope.users = [];
+			$scope.createUser = function(){
+				if(!$scope.newUser || !$scope.newUser.first_name){
+					$scope.error = "fill out all the fields";
+				}
+				else{
+					$scope.error = '';
+					$scope.newUser.createdAt = Date.now();
+					$scope.users.push($scope.newUser);
+					$scope.newUser = {};
+				}
+			}
+			$scope.deleteUser = function(user){
+				$scope.users.splice($scope.users.indexOf(user),1);
+			}
+		})
+	</script>
+</head>
+<body>
+	<fieldset ng-controller="usersController">
+		<legend>Users Controller</legend>
+		<div ng-if="error">
+			{{ error }}
+		</div>
+		<form ng-submit="createUser()">
+			<label for="first_name">First Name:
+				<input type="text" ng-model="newUser.first_name">
+			</label>
+			<label for="last_name">Last Name:
+				<input type="text" ng-model="newUser.last_name">
+			</label>
+			<label for="language">Language:
+				<input type="text" ng-model="newUser.language">
+			</label>
+			<input type="submit" value="Create User" />
+		</form>
+		<label>Search Table: <input type="text" ng-model="filter_text" /></label>
+		<table border="1">
+			<thead>
+				<tr>
+					<td><button ng-click="column='first_name'">First Name</button></td>
+					<td><button ng-click="column='last_name'">Last Name</button></td>
+					<td><button ng-click="column='language'">Language</button></td>
+					<td><button ng-click="column='createdAt'">Created At</button></td>
+					<td>Actions</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="user in users |filter:filter_text | orderBy:column track by $index">
+					<td>{{ user.first_name }}</td>
+					<td>{{ user.last_name }}</td>
+					<td>{{ user.language }}</td>
+					<td>{{ user.createdAt | date:'short' }}</td>
+					<td><button ng-click="deleteUser(user)">Delete User</button></td>
+				</tr>
+			</tbody>
+		</table>
+	</fieldset>
+</body>
+</html>
+

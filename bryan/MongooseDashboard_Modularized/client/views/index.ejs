@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/styles.css">
+  <title>Animals Database</title>
+</head>
+
+<body>
+
+<div id="container">
+  <h1><center>Animals Database</center></h1>
+  <% if ( animals.length == 0 ) { %>
+    <h2><br /><center>Database is empty!</center><br /><br /></h2>
+  <% } else { %>
+    <table>
+      <thead>
+        <tr>
+          <th class="tdName">Name</th>
+          <th class="tdDescrip">Description</th>
+          <th class="tdAction">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+          <% for (x in animals) { %>
+          <tr>
+            <td class="tdName"><%= animals[x].name %></td>
+            <td class="tdDescrip"><%= animals[x].description %></td>
+            <td class="tdAction">
+              <button class="bView"   formaction="/animals/<%= animals[x]._id %>"         formmethod="get"  type="submit" form="router">View</button>  
+              <button class="bEdit"   formaction="/animals/edit/<%= animals[x]._id %>"    formmethod="get"  type="submit" form="router">Edit</button>  
+              <button class="bDelete" formaction="/animals/destroy/<%= animals[x]._id %>" formmethod="post" type="submit" form="router">Delete</button>  
+            </td>  
+          </tr>  
+          <% } %>
+      </tbody>
+    </table>
+  <% } %>
+  <button class="bAdd" formaction="/animals/new" formmethod="get" type="submit" form="router">Add New Animal</button>  
+    
+  <form id="router" method="post"></form>
+    
+</div>
+    
+</body>
+</html>

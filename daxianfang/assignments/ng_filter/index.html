@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+	<head>
+		<title></title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+		<script type="text/javascript">
+			var myAppModule = angular.module('myApp', []);
+			myAppModule.controller('colorsController', function($scope) {
+				$scope.colors = [
+				{name: 'Red', hex: '#EE204D'},
+				{name: 'Orange', hex: '#FF7538'},
+				{name: 'Yellow', hex: '#FCE883'},
+				{name: 'Green', hex: '#1CAC78'},
+				{name: 'Blue', hex: '#1F75FE'},
+				{name: 'Indigo', hex: '#5D76CB'},
+				{name: 'Violet', hex: '#926EAE'}];
+			});
+		</script>
+	</head>
+	<body>
+		<div ng-controller='colorsController'>
+			<label>Search Color: <input type="text" ng-model='color'></label>
+			<table>
+				<thead>
+					<tr>
+						<th>Color Name</th>
+						<th>HEX</th>
+						<th>Color</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat='color in colors | filter:color'>
+						<td>{{ color.name }}</td>
+						<td>{{ color.hex }}</td>
+						<td style="background-color: {{ color.hex  }}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+  <head>
+    <title></title>
+ <!-- THESE TWO VERSIONS BELOW MUST MATCH (good thing bower will catch that for us, but be aware if you are using CDN's)!!! -->
+    <script src="angular/angular.js"></script>
+    <script src="angular-route/angular-route.js"></script>
+    <script>
+    //  inject the ngRoute dependency in the module.
+    var myApp = angular.module('myApp', ['ngRoute']);
+
+
+    // see the following on stack overflow to describe why this is needed
+    // http://stackoverflow.com/questions/41272314/angular-all-slashes-in-url-changed-to-2f
+
+    myApp.config(['$locationProvider', function($locationProvider) {
+      $locationProvider.hashPrefix('');
+    }]);
+
+    //  use the config method to set up routing:
+    myApp.config(function ($routeProvider) {
+      $routeProvider
+        .when('/',{
+            templateUrl: 'partials/partial1.html',
+        })
+        .when('/partial2',{
+            templateUrl: 'partials/partial2.html'
+        })
+        .otherwise({
+          redirectTo: '/'
+        });
+    });
+
+    //  build the controllers
+    myApp.controller('view1Controller', function ($scope) {
+      $scope.sports = ['golf', 'basketball', 'hockey', 'tennis', 'football'];
+    });
+    myApp.controller('view2Controller', function ($scope) {
+      $scope.message = 'We are using another controller';
+    });
+
+
+    </script>
+  </head>
+  <body>
+
+    <p>hello world </p>
+    <div ng-app='myApp'>
+       <a href="#/">Partial 1</a> | <a href="#/partial2">Partial 2</a>
+       <div ng-view="">
+       </div>
+    </div>
+
+  </body>
+</html>

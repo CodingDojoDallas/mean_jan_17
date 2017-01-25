@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Angular Test</title>
+	<script src = 'bower_components/angular/angular.js'></script>
+	<script type="text/javascript">
+		var app = angular.module('app', []);
+
+		app.controller('PlayersController', ['$scope', function($scope) {
+			// javascript that controls the Player view goes here:
+		}]);
+
+		app.controller('PlayersController', ['$scope', 'newinjectable', function($scope, "custom name of new injectable") {
+			// javascript that controls the Player view goes here:
+		}]);
+		console.log(app);
+
+
+	</script>
+</head>
+<body>
+	<h1>Angular Test</h1>
+	<p>
+  		
+	</p>
+</body>
+</html>

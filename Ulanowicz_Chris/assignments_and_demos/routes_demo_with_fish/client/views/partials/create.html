@@ -1,0 +1,7 @@
+<div ng-controller="fishController as FC">
+	<form ng-submit="FC.createFish()">
+		<input type="text" placeholder="fish name" ng-model="FC.newFish.name">
+		<input type="text" placeholder="fish type" ng-model="FC.newFish.type">
+		<input type="submit" value="add fish">
+	</form>
+</div>

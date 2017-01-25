@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+  <head>
+    <title></title>
+ <!-- THESE TWO VERSIONS BELOW MUST MATCH (good thing bower will catch that for us, but be aware if you are using CDN's)!!! -->
+    <script src="angular/angular.js"></script>
+    <script src="angular-route/angular-route.js"></script>
+    <script>
+    //  inject the ngRoute dependency in the module.
+    var myApp = angular.module('myApp', ['ngRoute']);
+
+    myApp.factory('userFactory', function (){
+        // The factory is nothing more than a function that returns an object
+        var users = [
+            {first_name: 'Jonathan', last_name: 'Coco', language: 'angular'}
+        ];
+
+        var factory = {};
+        // Add a getStudents key to the factory object with a value of a function.
+        factory.getUsers = function (callback){
+
+            callback(users);
+        }
+
+        factory.addUser = function(firstName, lastName, language, callback){
+
+            user = {first_name: firstName, last_name: lastName, language: language};
+
+            users.push(user);
+
+            callback(users);
+
+        }
+
+        factory.deleteUser = function(index, callback){
+
+            users.splice(index, 1);
+            callback(users);
+
+        }
+
+        // Most important step: return the object so it can be used by the rest of our angular code
+        return factory;
+    });
+
+
+    // see the following on stack overflow to describe why this is needed
+    // http://stackoverflow.com/questions/41272314/angular-all-slashes-in-url-changed-to-2f
+
+    myApp.config(['$locationProvider', function($locationProvider) {
+      $locationProvider.hashPrefix('');
+    }]);
+
+    //  use the config method to set up routing:
+    myApp.config(function ($routeProvider) {
+      $routeProvider
+        .when('/',{
+            templateUrl: 'partials/customizeUsers.html',
+        })
+        .when('/users',{
+            templateUrl: 'partials/customizeUsers.html'
+        })
+        .when('/list',{
+            templateUrl: 'partials/userList.html'
+        })
+        .otherwise({
+          redirectTo: '/'
+        });
+    });
+
+    //  build the controllers
+    myApp.controller('CustomizeUsersController', ['$scope', 'userFactory', '$location',  function ($scope, userFactory, $location){
+      // we don't need a factory for this demo, it wouldn't make a difference if we did.
+        $scope.sortType     = 'first_name'; // set the default sort type
+        $scope.sortReverse  = false;  // set the default sort order
+
+        $scope.users = [];
+
+        userFactory.getUsers(function(data) {
+            $scope.users = data
+        });
+
+        $scope.addUser = function(firstName, lastName, language){
+            userFactory.addUser(firstName, lastName, language, function(data) { $scope.users = data })
+            $location.url('/list');
+        }
+
+        $scope.deleteUser = function(index){
+            userFactory.deleteUser(index, function(data) { $scope.users = data })
+        }
+
+    }])
+
+    myApp.controller('UserListsController', ['$scope', 'userFactory', function ($scope, userFactory){
+      // we don't need a factory for this demo, it wouldn't make a difference if we did.
+        $scope.sortType     = 'first_name'; // set the default sort type
+        $scope.sortReverse  = false;  // set the default sort order
+
+        $scope.users = [];
+
+        userFactory.getUsers(function(data) {
+            $scope.users = data
+        });
+    }])
+
+
+    </script>
+  </head>
+  <body>
+    <div ng-app='myApp'>
+       <a href="#/users">Customize Users</a> | <a href="#/list">User  List</a>
+
+       <br><br>
+
+       <div ng-view="">
+       </div>
+    </div>
+
+  </body>
+</html>

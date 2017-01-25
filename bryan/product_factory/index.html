@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+
+<head>
+  <title>Products with Factory</title>
+  <script src="bower_components/angular/angular.js"></script>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+  </style>
+  <script type="text/javascript">
+    
+    var myAppModule = angular.module('myApp', []);
+
+    myAppModule.factory('ProductsFactory', function (){
+
+      var products = [
+        { name: 'Keyboard', price: 149.99},
+        { name: 'Mouse',    price: 49.99},
+        { name: 'Monitor',  price: 299.99}
+      ]
+
+      var factory = {};
+
+      factory.list = function(callback) {
+        callback(products);
+      }
+
+      factory.create = function(product, callback) {
+        products.push(product);
+        callback();
+      }
+
+      factory.remove = function(product) {
+        products.splice(products.indexOf(product), 1);
+      }
+
+      return factory;
+    });
+    
+    
+    myAppModule.controller('ProductsController', ['$scope', 'ProductsFactory', function ($scope, ProductsFactory){
+      
+      $scope.get = function getProducts() {
+        ProductsFactory.list(function (data) {
+          $scope.products = data;
+        })
+      }
+
+      $scope.get();
+
+      $scope.create = function (newProduct) {
+        ProductsFactory.create(newProduct, function () {
+          $scope.newProduct = {};
+        })
+      }
+
+      $scope.remove = function (product) {
+        ProductsFactory.remove(product); //, getProducts);
+      }
+
+    }]);
+
+  </script>
+</head>
+
+<body>
+  <div ng-controller='ProductsController'>
+    <fieldset>
+      <legend>Products Controller</legend>
+      
+      <label>Product Name:
+      <input type="text" ng-model='newProduct.name'></label><br /><br />
+      <label>Product Price: &nbsp;
+      <input type="text" ng-model='newProduct.price'></label>
+      <input type="submit" value="Add Product" ng-click='create(newProduct)'>
+      <br /><br />
+      <table border="1" cellpadding="4" bordercollapse="0">
+        <tr>
+          <td>Name</td>
+          <td align="right">Price</td>
+          <td>Actions</td>
+        </tr>
+        <tr ng-repeat="item in products">
+          <td>{{item.name}}</td>
+          <td align="right">{{item.price|currency}}</td>
+          <td>
+            <button ng-click='remove(item)'>Delete Product</button>
+          </td>
+        </tr>
+      </table>
+      
+    </fieldset>
+
+    </div>
+</body>
+
+</html>

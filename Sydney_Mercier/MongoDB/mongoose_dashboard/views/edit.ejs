@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Mongoose Dashboard</title>
+</head>
+<body>
+	<h1>Edit owl</h1>
+	<form action='/<%= owl._id %>' method='post'>
+	    Owl Name: <input type='text' name='name'>
+	    Owl Species: <input type='text' name='species'>
+	    Owl Owner: <input type='text' name='owner'>
+	    <input type='submit' value='Submit'>
+	</form>
+</body>
+</html>

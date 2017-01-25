@@ -1,0 +1,147 @@
+<html>
+<head>
+  <title></title>
+  <script src='bower_components/angular/angular.js'></script>
+  <script type='text/javascript'>
+    var myApp = angular.module('myApp', []);
+
+    myApp.factory('productFactory', function (){
+        // The factory is nothing more than a function that returns an object
+        var products = [
+            {product_name: 'basketball hoop', product_price: 34.11, quantity:20},
+            {product_name: 'football jersey', product_price: 99.45, quantity:44},
+            {product_name: 'soccer goal', product_price: 250.00, quantity:17}];
+
+        var factory = {};
+        // Add a getStudents key to the factory object with a value of a function.
+        factory.getProducts = function (callback){
+
+            callback(products);
+        }
+
+        factory.addProduct = function(productName, productPrice, callback){
+
+            product = { product_name: productName, product_price: productPrice, quantity:50};
+
+            products.push(product);
+
+            callback(products);
+
+        }
+
+        factory.deleteProduct = function(index, callback){
+
+            products.splice(index, 1);
+            callback(products);
+
+        }
+
+        factory.buyProduct = function(index, callback){
+
+            products[index].quantity--;
+
+            callback(products);
+
+        }
+        // Most important step: return the object so it can be used by the rest of our angular code
+        return factory;
+    });
+
+
+    myApp.controller('productController', ['$scope', 'productFactory', function ($scope, productFactory){
+      // we don't need a factory for this demo, it wouldn't make a difference if we did.
+        $scope.sortType     = 'product_name'; // set the default sort type
+        $scope.sortReverse  = false;  // set the default sort order
+
+        $scope.products = [];
+
+        productFactory.getProducts(function(data) {
+            $scope.products = data
+        });
+
+        $scope.addProduct = function(productName, productPrice){
+
+            productFactory.addProduct(productName, productPrice, function(data) { $scope.products = data })
+
+        }
+
+        $scope.deleteProduct = function(index){
+
+            productFactory.deleteProduct(index, function(data) { $scope.products = data })
+
+        }
+
+    }])
+
+    myApp.controller('orderController', ['$scope', 'productFactory', function ($scope, productFactory){
+      // we don't need a factory for this demo, it wouldn't make a difference if we did.
+        $scope.sortType     = 'product_name'; // set the default sort type
+        $scope.sortReverse  = false;  // set the default sort order
+
+        $scope.products = [];
+
+        productFactory.getProducts(function(data) {
+            $scope.products = data
+        });
+
+
+        $scope.buyProduct = function(index){
+
+            productFactory.buyProduct(index, function(data) { $scope.products = data })
+
+        }
+
+    }])
+  </script>
+</head>
+<body ng-app='myApp'>
+    <div ng-controller='productController'>
+      <label>Product Name:</label>
+      <input type="text" ng-model = 'productName'><br>
+
+      <label>ProductPrice:</label>
+      <input type="number" ng-model = 'productPrice'><br>
+
+      <button ng-click = "addProduct(productName, productPrice);">Add Product</button>
+      <br> <br> <br>
+
+      <input type="text" ng-model = 'productFilter'>   <br>
+
+      <table>
+          <thead>
+              <tr>
+                  <td><a href="#" ng-click="sortType = 'product_name'; sortReverse = !sortReverse">Name</a></td>
+                  <td><a href="#" ng-click="sortType = 'product_price'; sortReverse = !sortReverse">Price</a></td>
+                 <td>Actions</td>
+              <tr>
+          </thead>
+          <tr ng-repeat = "product in products | orderBy:sortType:sortReverse | filter:productFilter ">
+              <td>{{product.product_name}}</td>
+              <td>{{product.product_price | currency}}</td>
+              <td><button ng-click = "deleteProduct($index);">Delete Product</button></td>
+          </tr>
+      </table>
+    </div>
+
+    <br><br>
+
+    <div ng-controller='orderController'>
+      <p> Orders Controller </p>
+      <table>
+          <thead>
+              <tr>
+                  <td><a href="#" ng-click="sortType = 'product_name'; sortReverse = !sortReverse">Name</a></td>
+                  <td><a href="#" ng-click="sortType = 'product_price'; sortReverse = !sortReverse">Price</a></td>
+                 <td>Actions</td>
+              <tr>
+          </thead>
+          <tr ng-repeat = "product in products | orderBy:sortType:sortReverse | filter:productFilter ">
+              <td>{{product.product_name}}</td>
+              <td>{{product.product_price | currency}}</td>
+              <td>{{product.quantity}}</td>
+              <td><button ng-click = "buyProduct($index);">Buy Product</button></td>
+          </tr>
+      </table>
+    </div>
+</body>
+</html>

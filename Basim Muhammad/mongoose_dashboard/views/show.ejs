@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Show</title>
+</head>
+<body>
+  <h1>Show!</h1>
+  	<% for (var x in animal) { %>
+	  <h3>Name: <%= animal[x].name %></h3>
+	  <h3>Type: <%= animal[x].type %></h3>
+	  <h4>Age: <%= animal[x].age %></h4>
+
+
+  
+  		<a href="/mongooses/edit/<%= animal[x]._id %> ">Edit</a>
+
+  		
+  	<% } %>
+</body>
+</html>

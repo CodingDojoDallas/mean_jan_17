@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app='app'>
+<head>
+  <title></title>
+  <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js'></script>
+  <script type="">
+    var app = angular.module('app', [])
+
+    app.controller('foodController', ['$scope', function($scope) {
+          $scope.food = []
+          $scope.addFood = function(){
+            $scope.food.push($scope.newFood)
+            $scope.newFood = ''
+          }
+    }])    
+  </script>
+</head>
+<body>
+  <div ng-controller='foodController'>
+    <form>
+      Favorite Food: <input type="text" name="food" ng-model='newFood'>
+      <input type="submit" name="add" ng-click='addFood()'>
+    </form>
+    <p>You are currently typing: <span ng-bind='newFood'> </span></p>
+
+    <input type="text" name="filter" ng-model='filter'>
+    <div ng-repeat='x in food | filter: filter'>
+      {{ x }}
+    </div>
+      
+  </div>
+</body>
+</html>

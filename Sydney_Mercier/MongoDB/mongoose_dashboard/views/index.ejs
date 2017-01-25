@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Mongoose Dashboard</title>
+</head>
+<body>
+	<h1>Owls</h1>
+	<% for(x in owls){ %>
+		<p><a href="/<%= owls[x]._id %>"><%= owls[x].name %></a></p>
+		<form action='/<%= owls[x]._id %>/destroy' method='post'>
+	    	<input type='submit' value='Delete'>
+		</form>
+		<hr>
+	<% } %>
+	<a href="/new">New Owl</a>
+</body>
+</html>

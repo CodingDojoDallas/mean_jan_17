@@ -1,0 +1,39 @@
+<style>
+td
+{border-left:1px solid black;
+border-top:1px solid black;}
+table
+{border-right:1px solid black;
+border-bottom:1px solid black;}
+</style>
+
+<div ng-controller='AssociationsController'>
+
+
+    <br>
+    <select id="playerList"  ng-model = "player" >
+        <option ng-repeat= "player in players " value="{{player.player}}">{{player.player}}</option>
+    </select>
+
+    <select id="teamList"  ng-model = "team">
+        <option ng-repeat= "team in teams" value="{{team.team}}">{{team.team}}</option>
+    </select>
+
+    <button ng-click = "addAssoc(player, team);">Assign Player to Team</button>
+    <br> <br> <br>
+
+    <table>
+      <thead>
+          <tr>
+             <td><a href="" ng-click="sortType = 'player'; sortReverse = !sortReverse">Player</a></td>
+             <td><a href="" ng-click="sortType = 'team'; sortReverse = !sortReverse">Team</a></td>
+             <td>Actions</td>
+          <tr>
+      </thead>
+      <tr ng-repeat = "assoc in assocPlayerTeam  | orderBy:sortType:sortReverse  track by $index  ">
+          <td>{{assoc.player}}</td>
+          <td>{{assoc.team}}</td>
+          <td><button ng-click = "deleteAssociation($index);">Clear Assignment</button></td>
+      </tr>
+    </table>
+</div>

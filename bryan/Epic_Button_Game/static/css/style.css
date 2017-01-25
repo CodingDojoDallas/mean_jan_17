@@ -1,0 +1,22 @@
+#msg {
+  font-size       : 50px;
+  font-weight     : bold;
+}
+#button1, #button2 {
+  color           : white;
+  background-color: mediumblue;
+  border          : 4px solid black;
+  padding         : 30px 20px;
+  font-weight     : bold;
+  font-size       : 30px;
+  border-radius   : 25px;
+  box-shadow      : 3px 3px 3px black;
+}
+#button2 {
+  margin-top      : 30px;
+  padding         : 3px 10px;
+  font-size       : 25px;
+  border-radius   : 0;
+  box-shadow      : 3px 3px 3px black;
+  background-color: red;
+}

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+
+<head>
+  <title>Products with Factory</title>
+  <script src="bower_components/angular/angular.js"></script>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+  </style>
+  <script type="text/javascript">
+    
+    var myAppModule = angular.module('myApp', []);
+
+    myAppModule.factory('ProductsFactory', function (){
+
+      var products = [
+        { name: 'Keyboard', price: 149.99, qty: 50},
+        { name: 'Mouse',    price: 49.99,  qty: 50},
+        { name: 'Monitor',  price: 299.99, qty: 50}
+      ]
+
+      var factory = {};
+
+        factory.index = function(callback) {
+          callback(products);
+        }
+
+        factory.add = function(product, callback) {
+          product.qty = 50;
+          products.push(product);
+          callback();
+        }
+
+        factory.delete = function(product) {
+          products.splice(products.indexOf(product), 1);
+        }
+        
+        factory.sell = function(product) {
+          if(product.qty > 0){
+            product.qty--;
+          }
+        }
+        
+      return factory;
+    });
+
+    myAppModule.controller('ProductsController', ['ProductsFactory', function(ProductsFactory){
+      var self = this;
+      this.get = function() {
+        ProductsFactory.index(function(data) {
+          self.products = data;
+        })
+      }
+      this.get();
+      
+      this.add = function(newProduct) {
+        ProductsFactory.add(newProduct, function () {
+          self.newProduct = {};
+        })
+      }
+      this.delete = function (product) {
+        ProductsFactory.delete(product);
+      }
+      this.filterAlpha = function($event, str) {
+        if(isNaN($event.key)){
+          if($event.keyCode != 46) {
+            $event.preventDefault();
+          }
+        }
+      }
+      
+    }]);
+
+    myAppModule.controller('OrdersController', ['ProductsFactory', function(ProductsFactory){
+      var self = this;
+      this.get = function() {
+        ProductsFactory.index(function(data) {
+          self.products = data;
+        })
+      }
+      this.get();
+
+      this.sell = function(product) {
+        ProductsFactory.sell(product);
+      }
+
+    }]);
+
+  </script>
+</head>
+
+<body>
+  <div ng-controller='ProductsController as pControl'>
+    <fieldset>
+      <legend>Products Controller</legend>
+      
+      <label>Product Name:
+      <input type="text" ng-model='pControl.newProduct.name'></label><br /><br />
+      <label>Product Price: &nbsp;
+      <input type="text" ng-keypress='pControl.filterAlpha($event,pControl.newProduct.price)' ng-model='pControl.newProduct.price' ></label>
+      <input type="submit" value="Add Product" ng-click='pControl.add(pControl.newProduct)'>
+      <br /><br />
+      <table border="1" cellpadding="4" bordercollapse="0">
+        <tr>
+          <td>Name</td>
+          <td align="right">Price</td>
+          <td>Actions</td>
+        </tr>
+        <tr ng-repeat="product in pControl.products">
+          <td>{{product.name}}</td>
+          <td align="right">{{product.price|currency}}</td>
+          <td>
+            <button ng-click='pControl.delete(product)'>Delete Product</button>
+          </td>
+        </tr>
+      </table>
+    </fieldset>
+      
+      <br />
+      
+      <div ng-controller='OrdersController as oControl'>
+        <fieldset>
+          <legend>Orders Controller</legend>
+
+          <table border="1" cellpadding="4" bordercollapse="0">
+            <tr>
+              <td>Name</td>
+              <td align="right">Price</td>
+              <td align="center">Qty Available</td>
+              <td>Actions</td>
+            </tr>
+            <tr ng-repeat="product in oControl.products">
+              <td>{{product.name}}</td>
+              <td align="right">{{product.price|currency}}</td>
+              <td align="center">{{product.qty}}</td>
+              <td>
+                <button ng-click='oControl.sell(product)'>Sell 1 Product</button>
+              </td>
+            </tr>
+          </table>
+
+        </fieldset>
+      </div>
+
+    </div>
+</body>
+
+</html>

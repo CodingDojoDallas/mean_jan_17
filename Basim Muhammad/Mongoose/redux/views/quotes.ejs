@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Quotes</title>
+	</head>
+	<body>
+		<h2>Here are the awesome quotes</h2>
+		<% for (var row in quotes) { %>
+			<div>
+			Name: <%= quotes[row].name %> 
+			Quote: <%= quotes[row].quote %> 
+			</div>
+		<% } %>
+	</body>
+</html>

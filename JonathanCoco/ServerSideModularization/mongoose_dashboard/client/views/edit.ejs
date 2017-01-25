@@ -1,0 +1,15 @@
+<html>
+
+<body>
+    <form action="/animals/<%= animal._id %>" method="post">
+        <p>Animal:</p>
+        <input type="text" name="animal" value = "<%= animal.animal %>"></input>
+
+        <p>Herd Size:</p>
+        <input type="text" name="herd_size" value = "<%= animal.herd_Size%>"></input><br>
+
+        <input type="submit" value="Update Animal" class="button"><br>
+    </form>
+
+</body>
+</html>

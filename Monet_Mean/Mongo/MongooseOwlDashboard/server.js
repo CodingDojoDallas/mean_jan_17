@@ -1,3 +1,4 @@
+
 var express = require("express"),
 	path= require('path'),
 	bp =require('body-parser'),
@@ -11,6 +12,7 @@ app.set('view engine', 'ejs');
 var connection = mongoose.connect('mongodb://localhost/animals');
 
 var OwlSchema = new mongoose.Schema({
+
 	color: String,
 	size: String,
 	age: String,
@@ -76,6 +78,7 @@ app.post('/owls/destroy/:id', function(request, response){
 		console.log("Made into Delete")
 		response.redirect("/");
 	})
+
 })
 
 app.listen(8000, function(){

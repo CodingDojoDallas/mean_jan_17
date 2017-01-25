@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Survey Form Redux</title>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script type="text/javascript" src='/socket.io/socket.io.js'></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      var socket = io.connect()
+      $('form').submit(function(){
+        var users = {name: $('#name').val(),
+                     location:$('#location').val(),
+                     language:$('#language').val(),
+                     comment:$('#comment').val()}
+        socket.emit('posting_form', users)
+        $('.emitted').css('display', 'block')
+        return false
+      })
+      socket.on('display_info', function(message){
+        console.log(message)
+        $('.emitted').html(message)
+        $('p').css('margin', '0 0 .5px 0')
+
+      })
+
+    })
+  </script>
+</head>
+<body>
+  <div class='content'>
+    <form>
+      <label>Your Name: <input type="text" id='name' name="name"></label>
+      <label>Dojo Location: 
+        <select id='location' name="location">
+          <option value="Dallas">Dallas</option>
+          <option value="Mountain View">Mountain View</option>
+          <option value="Seattle">Seattle</option>
+        </select></label>
+      <label>Favorite Language:
+        <select id="language" name="language">
+          <option value='Javascript'>Javascript</option>
+          <option value="Python">Python</option>
+          <option value='Ruby on Rails'>Ruby on Rails</option>
+        </select></label>
+      <label>Comment (optional): <textarea id="comment" name="comment" cols="60" rows="5"></textarea></label>
+      <label><input type="submit" name="submit" value="Create User"></label>
+    </form>
+  </div>
+  <div class="emitted">
+
+  </div>
+
+</body>
+</html>
