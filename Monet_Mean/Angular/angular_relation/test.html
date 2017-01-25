@@ -1,0 +1,26 @@
+<html ng-app>
+<head>
+	<title>Bower Angular Test Relationships</title>
+	<script src = 'bower_components/angular/angular.js'></script>
+	<script>
+		var app = angular.module('app',[]);
+ 		console.log(app);
+
+ 		app.controller('PlayersController', ['$scope', function($scope) {
+		//javascript that controls the Player view goes here:
+		}]);
+
+ 		app.controller('PlayersController', ['$scope', 'newinjectable', function($scope, "custom name of new injectable") {
+		//javascript that controls the Player view goes here:
+		}]);
+
+	</script>
+
+</head>
+<body ng-init=" dojo='ninja' ">
+	<h1>Testing Angular Relationships</h1>
+	<p>{{dojo}}</p>
+
+
+</body>
+</html>
