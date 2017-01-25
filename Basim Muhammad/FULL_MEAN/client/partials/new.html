@@ -1,0 +1,24 @@
+<div ng-controller='newController as nc'>
+
+
+<!-- You will attach an ng-model and an ng-submit to your forms (but might want to wait until the next tab, when you have your controllers and factory) -->
+
+	<form ng-submit="nc.create()" >
+		Name: <input type="text" ng-model='nc.newFriend.name'>
+		<button type="submit" >Add Friend</button>
+	</form>
+	
+	<h2>Names of all current Friends</h2>
+	<div ng-repeat='friend in nc.friends'>
+		<p>{{friend.name}}</p>
+		<a href="#!/edit/{{friend._id}}">Edit</a>
+		<button ng-click='nc.delete(friend)'>Delete</button>
+		
+
+	</div>
+
+
+
+	
+
+</div>

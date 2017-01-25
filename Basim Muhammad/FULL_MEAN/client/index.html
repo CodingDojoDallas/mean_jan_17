@@ -1,0 +1,31 @@
+<!DOCTYPE html >
+<html ng-app='firstApp'>
+	<head>
+		<title>Putting it all Together</title>
+		<script src='angular/angular.js'></script>
+		<script src='angular-route/angular-route.js'></script>
+		<script src='assets/app.js'></script>
+		<script src='assets/factories/friendsFactory.js'></script>
+		<script src='assets/controllers/editController.js'></script>
+		<script src='assets/controllers/newController.js'></script>
+
+		<script type="text/javascript">
+
+
+
+
+		</script>
+	</head>
+	<body>
+		<div ng-app='firstApp'>
+			Welcome peeps
+			<h2>Whatcha wanna do</h2>
+				
+			<a href="#!/new">NEW USER</a> | <a href="#!/edit">EDIT USER</a>
+			<div ng-view=''>
+
+				
+			</div>
+		</div>
+	</body>
+</html>
