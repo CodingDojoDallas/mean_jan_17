@@ -1,0 +1,37 @@
+<div ng-controller='indexController as index'>
+    <p>Full Mean Wall - Welcome, {{user_name}} -- <a href="" ng-click="logout()">logout</a><p>
+    <hr>
+
+    <p>Post a Message</p>
+    <form  name="message_form" class="css-form" novalidate>
+        <label>Message:</label>
+        <input type="text" ng-model="newMessage.message" name="rMessage" required="" />
+        <br>
+        <input type="submit" ng-click="create()" value="Message"/>
+    </form>
+    <hr>
+
+
+    <div class="message" ng-repeat = "message in messages | orderBy:'-createdAt'">
+        <p>{{message.name}} - {{message.createdAt | date: 'MM/dd/yyyy @ h:mma'}}</p>
+        <p><strong>{{message.message}}</strong></p>
+
+        <div ng-if="message.comments">
+            <div class="comment" ng-repeat = "comment in message.comments | orderBy : '-createdAt'">
+                <p><i>{{comment.name}} - {{comment.createdAt | date: 'MM/dd/yyyy @ h:mma'}}</i></p>
+                <p><i>{{comment.comment}}</i></p>
+            </div>
+        </div>
+
+        <div class="comment">
+            <p>Post a comment</p>
+            <input type="text" ng-model="newComment.comment" required="" />
+            <br>
+            <input type="submit" ng-click="createComment(message, newComment.comment);" value="Comment"/>
+        </div>
+        <hr>
+    </div>
+
+
+
+</div>
