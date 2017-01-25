@@ -1,0 +1,153 @@
+// Place all the styles related to the Sessions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: sans-serif;
+}
+
+
+#container{
+    width: 800px;
+    margin: 0px auto;
+    background-color: lightgrey;
+    padding: 10px;
+}
+
+
+#login_container{
+    width: 300px;
+    margin: 10px;
+    background-color: lightgrey;
+    display: inline-block;
+    vertical-align: top;
+    border-style: solid;
+
+}
+
+
+#registration{
+    width: 300px;
+    display: block;
+    border-style: solid;
+    margin: 10px;
+    border-style: solid;
+}
+
+
+#login{
+    width: 300px;
+    display: block;
+    vertical-align: top;
+    border-style: solid;
+    margin: 10px;
+}
+
+.red{
+  color: red;
+}
+
+
+#header_1{
+    display: inline-block;
+    width: 400px;
+    vertical-align: top;
+}
+
+#header_1 p{
+  font-size: 24px;
+}
+
+#header_2{
+    display: inline-block;
+    width: 400px;
+    text-align: right;
+    vertical-align: top;
+}
+
+#header_2 form{
+    display: inline-block;
+}
+
+
+
+table, th, td {
+    border: 1px solid black;
+}
+
+table{
+    margin-top: 10px;
+    width: 600px;
+}
+
+th, td{
+    padding: 5px
+}
+
+label{
+    width: 100px;
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: top;
+}
+
+
+.buttons{
+    margin-top:10px;
+    margin-left: 10px;
+    width: 75px;
+}
+
+input{
+    display: inline;
+    margin-bottom:  10px;
+}
+
+.error_message{
+    display: block;
+}
+
+h1{
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+h2{
+    margin-bottom: 10px;
+}
+
+
+.message{
+  margin-left: 25px;
+}
+
+.comment{
+  margin-left: 50px;
+}
+
+.topic{
+  margin-left: 50px;
+}
+
+.topic_comment{
+  margin-left: 75px;
+}
+
+
+.answer_div{
+  width: 700px;
+}
+.answer{
+    display: inline-block;
+    width: 325px;
+    vertical-align: middle
+}
+
+
+.answer_vote{
+    display: inline-block;
+    width: 325px;
+    text-align: right;
+    vertical-align: middle
+}

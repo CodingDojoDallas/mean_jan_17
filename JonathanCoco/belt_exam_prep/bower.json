@@ -1,0 +1,24 @@
+{
+  "name": "belt_exam_prep",
+  "authors": [
+    "Jonathan Coco <cocojonathan@yahoo.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.1",
+    "angular-route": "^1.6.1",
+    "angular-post-fix": "^0.1.0",
+    "angular-cookies": "^1.6.1",
+    "moment": "^2.17.1"
+  }
+}

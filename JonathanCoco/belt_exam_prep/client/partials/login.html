@@ -1,0 +1,65 @@
+
+<div ng-controller='loginController'>
+    <div id="registration">
+        <h2>Registration</h2>
+        <form  name="registration_form" class="css-form" novalidate>
+            <label>Email:</label>
+            <input type="text" ng-model="register_user.email" name="rEmail" required="" />
+            <div class = "red" ng-if="register_user.errors.email">{{register_user.errors.email.message}}</div>
+            <div class = "red" ng-if="register_user.client_email_validation">{{register_user.client_email_validation}}</div>
+            <br>
+
+            <label>First Name:</label>
+            <input type="text" ng-model="register_user.first_name" name="rFirstName" required="" />
+            <div class = "red" ng-if="register_user.errors.first_name">{{register_user.errors.first_name.message}}</div>
+            <div class = "red" ng-if="register_user.client_first_name_validation">{{register_user.client_first_name_validation}}</div>
+            <br>
+
+            <label>Last Name:</label>
+            <input type="text" ng-model="register_user.last_name" name="rLasttName" required="" />
+            <div class = "red" ng-if="register_user.errors.last_name">{{register_user.errors.last_name.message}}</div>
+            <div class = "red" ng-if="register_user.client_last_name_validation">{{register_user.client_last_name_validation}}</div>
+            <br>
+
+            <label>Phone:</label>
+            <input type="text" ng-model="register_user.phone" name="rPhone" required="" />
+            <div class = "red" ng-if="register_user.errors.phone">{{register_user.errors.phone.message}}</div>
+            <div class = "red" ng-if="register_user.client_phone_validation">{{register_user.client_phone_validation}}</div>
+            <br>
+
+            <label>Password:</label>
+            <input type="password" ng-model="register_user.password" name="rPassword" required="" />
+            <div class = "red" ng-if="register_user.errors.password">{{register_user.errors.password.message}}</div>
+            <div class = "red" ng-if="register_user.client_password_mismatch">{{register_user.client_password_mismatch}}</div>
+            <br>
+
+            <label>Confirm Password:</label>
+            <input type="password" ng-model="register_user.confirm_password" name="rConfirmPassword" required="" />
+
+            <br>
+            <br>
+            <br>
+
+            <input type="button" ng-click="reset()" value="Reset"/>
+            <input type="submit" ng-click="register()" value="Save"/>
+        </form>
+    </div>
+
+    <div id="login">
+        <h2>Login</h2>
+        <form  name="login_form" class="css-form" novalidate>
+            <label>Email:</label>
+            <input type="text" ng-model="login_user.email" name="lEmail" required="" />
+            <div class = "red" ng-if="login_user.errors.email">{{login_user.errors.email}}</div>
+            <br>
+
+            <label>Password:</label>
+            <input type="password" ng-model="login_user.password" name="lPassword" required="" />
+            <div class = "red" ng-if="login_user.errors.password">{{login_user.errors.password}}</div>
+            <br>
+
+            <input type="submit" ng-click="login()" value="Login"/>
+        </form>
+    </div>
+
+</div>

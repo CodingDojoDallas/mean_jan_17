@@ -1,0 +1,30 @@
+<!DOCTYPE html ng-app="app">
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <script src='angular/angular.js'></script>
+  <script src='angular-route/angular-route.js'></script>
+  <script src='angular-post-fix/postfix.js'></script>
+  <script src='angular-cookies/angular-cookies.js'></script>
+  <script src='moment/moment.js'></script>
+  <script src='assets/app.js'></script>
+  <script src='assets/factories/userFactory.js'></script>
+  <script src='assets/factories/topicFactory.js'></script>
+  <script src='assets/factories/categoryFactory.js'></script>
+  <script src='assets/controllers/topicController.js'></script>
+  <script src='assets/controllers/loginController.js'></script>
+  <script src='assets/controllers/userController.js'></script>
+  <link rel="stylesheet" type="text/css" href="assets/stylesheets/style.css">
+
+  <title>Belt Exam Prep</title>
+</head>
+
+<body>
+    <div ng-app='app'>
+        <div ng-view>
+        </div>
+    </div>
+</body>
+
+</html>

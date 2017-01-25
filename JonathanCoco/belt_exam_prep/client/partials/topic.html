@@ -1,0 +1,56 @@
+<div class="container">
+    <div ng-controller='loginController'>
+        <div id="header_1">
+            <p>Welcome, {{user_name}} <p>
+        </div>
+        <div id="header_2">
+            <a href="" ng-click="dashboard()">Dashboard</a> |
+            <a href="" ng-click="logout()">Logout</a>
+        </div>
+    </div>
+
+    <div ng-controller='topicController'>
+        <p><a href="" ng-click="showUser(topic._user._id)">{{topic._user.first_name}}</a> posted a topic:</p>
+        <div class="topic">
+            <p><strong>{{topic.topic}}</strong></p>
+            <p>{{topic.description}}</p>
+            <p>({{topic.createdAt | datespan}})</p>
+        </div>
+
+        <h3><strong>Post your answer here:</strong></h3>
+            <form name="answer_form">
+                <textarea ng-model="newAnswer.answer"  ng-required="true" rows="3" cols="75"></textarea><br>
+                <input type="submit" ng-click="createAnswer()" value="Create"/>
+                {{form.input.$error.required}}
+            </form>
+        <hr>
+
+        <div ng-repeat = "answer in topic.answers | orderBy: 'createdAt':true">
+            <div class = "answer_div">
+                <div class="answer">
+                    <p><a href="" ng-click="showUser(answer._user._id)">{{answer._user.first_name}}</a>: {{answer.answer}} ({{answer.createdAt | datespan}})</p>
+                </div>
+
+                <div class = "answer_vote" ng-if="answer._user._id != user_id">
+                    <a href="" ng-click="voteAnswer(answer, true)">Like ({{answer.likes}})</a> |
+                    <a href="" ng-click="voteAnswer(answer, false)">Dislike ({{answer.dislikes}})</a>
+                </div>
+            </div>
+
+            <div class="topic_comment">
+                <div>
+                    <form name="comment_form_[answer._id]">
+                        <textarea ng-model="newComment.comment[answer._id]"  ng-required="true" rows="2" cols="50"></textarea><br>
+                        <input type="submit" ng-click="createComment(answer, newComment.comment[answer._id])" value="Comment"/>
+                        {{form.input.$error.required}}
+                    </form>
+                </div>
+
+                <div ng-repeat = "comment in answer.comments | orderBy: 'createdAt'">
+                    <p><a href="" ng-click="showUser(comment._user._id)">{{comment._user.first_name}}</a>: {{comment.comment}} ({{comment.createdAt | datespan}})</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
