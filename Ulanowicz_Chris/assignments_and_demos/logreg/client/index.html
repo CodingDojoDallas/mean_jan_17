@@ -12,6 +12,9 @@
 	<fieldset>
 		<legend>Login</legend>
 		<form ng-submit="UC.login()">
+			<div ng-if="UC.validationErrors.login">
+				{{ UC.validationErrors.login.message }}
+			</div>
 			<label>Username
 				<input type="text" ng-model="UC.logUser.username" />
 			</label>
