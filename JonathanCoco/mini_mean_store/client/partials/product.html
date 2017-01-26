@@ -1,0 +1,61 @@
+<div ng-controller='headerController'>
+    <ul>
+        <li><a href="" ng-click="dashboard()">Dashboard</a></li> |
+        <li>Products</li> |
+        <li><a href="" ng-click="customer()">Customers</a></li> |
+        <li><a href="" ng-click="orders()">Orders</a></li> |
+        <li><a href="" ng-click="settings()">Settings</a></li>
+    </ul>
+    <hr>
+</div>
+
+<div ng-controller='productController' id="product_container"  ng-init = "product_listing_limit = 4">
+
+    <div id="product_form">
+        <input type="text" ng-model = 'productFilter'>   <br>
+        <h3>Add a new product</h3>
+        <form  name="product_form" class="css-form" novalidate>
+            <label>Name:</label>
+            <input type="text" ng-model="newProduct.name" name="pName" required="" />
+            <div class = "red" ng-if="newProduct.errors.name">{{newProduct.errors.name.message}}</div>
+            <div class = "red" ng-if="newProduct.client_name_validation">{{newProduct.client_name_validation}}</div>
+            <br>
+
+            <label>Image URL:</label>
+            <input type="text" ng-model="newProduct.image_url" name="pImageURL" required=""/>
+            <div class = "red" ng-if="newProduct.errors.image">{{newProduct.errors.image.message}}</div>
+            <div class = "red" ng-if="newProduct.client_image_url_validation">{{newProduct.client_image_url_validation}}</div>
+            <br>
+
+            <label>Description:</label>
+            <textarea ng-model="newProduct.description" name="pDescription" required="" rows="3" /></textarea>
+            <div class = "red" ng-if="newProduct.errors.description">{{newProduct.errors.description.message}}</div>
+            <div class = "red" ng-if="newProduct.client_description_validation">{{newProduct.client_description_validation}}</div>
+            <br>
+
+            <label>Quantity:</label>
+            <input type="number" ng-model="newProduct.quantity" name="pQuantity" min="0" required="" />
+            <div class = "red" ng-if="newProduct.errors.quantity">{{newProduct.errors.quantity.message}}</div>
+            <div class = "red" ng-if="newProduct.client_quantity_validation">{{newProduct.client_quantity_validation}}</div>
+            <br>
+
+            <input type="button" ng-click="resetProduct()" value="Reset"/>
+            <input type="submit" ng-click="createProduct()" value="Create"/>
+        </form>
+    </div>
+
+    <div id="product_results">
+
+        <div class="products" ng-repeat  = "product in products | filter:productFilter | limitTo: product_listing_limit : product_start">
+            <img src="{{product.image}}" alt="image" height="200" width="200">
+            <p>{{product.name}}</p>
+            <p>({{product.quantity}} left)</p>
+        </div>
+
+        <div>
+            <a href="" ng-click="productListingMore()">More..</a>
+        </div>
+
+    </div>
+
+</div>

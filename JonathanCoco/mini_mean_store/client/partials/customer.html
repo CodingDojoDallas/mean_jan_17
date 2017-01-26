@@ -1,0 +1,41 @@
+<div ng-controller='headerController'>
+    <ul>
+        <li><a href="" ng-click="dashboard()">Dashboard</a></li> |
+        <li><a href="" ng-click="products()">Products</a></li> |
+        <li>Customers</li> |
+        <li><a href="" ng-click="orders()">Orders</a></li> |
+        <li><a href="" ng-click="settings()">Settings</a></li>
+    </ul>
+    <hr>
+</div>
+
+<div ng-controller='customerController'>
+    <h3>Add a new customer</h3>
+    <form  name="customer_form" class="css-form" novalidate>
+        <label>Name:</label>
+        <input type="text" ng-model="newCustomer.name" name="cName" required="" /><br>
+        <div class = "red" ng-if="newCustomer.errors.name">{{newCustomer.errors.name.message}}</div>
+        <div class = "red" ng-if="newCustomer.client_name_validation">{{newCustomer.client_name_validation}}</div>
+        <input type="submit" ng-click="create()" value="Create"/>
+        <br>
+    </form>
+
+
+    <input type="text" ng-model = 'customerFilter'>   <br>
+
+    <table>
+      <thead>
+          <tr>
+             <td><a href="" ng-click="sortType = 'name'; sortReverse = !sortReverse">Name</a></td>
+             <td>Created Date</td>
+             <td>Action</td>
+          <tr>
+      </thead>
+
+      <tr ng-repeat = "customer in customers | orderBy:sortType:sortReverse | filter:customerFilter">
+          <td>{{customer.name}}</td>
+          <td>{{customer.created_at | date : 'M/d/yyyy'}}</td>
+          <td><a href="" ng-click="remove(customer)">Remove</a></td>
+      </tr>
+    </table>
+</div>

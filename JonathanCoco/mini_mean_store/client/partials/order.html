@@ -1,0 +1,60 @@
+<div ng-controller='headerController'>
+    <ul>
+        <li><a href="" ng-click="dashboard()">Dashboard</a></li> |
+        <li><a href="" ng-click="products()">Products</a></li> |
+        <li><a href="" ng-click="customer()">Customers</a></li> |
+        <li>Orders</li> |
+        <li><a href="" ng-click="settings()">Settings</a></li>
+    </ul>
+    <hr>
+</div>
+
+<div ng-controller='orderController'>
+    <h3>Add a new order</h3>
+    <form  name="order_form" class="css-form" novalidate>
+        <label>Customer:</label>
+        <select ng-model="newOrder.customer">
+          <option ng-repeat = "customer in customers" value={{customer._id}}>{{customer.name}}</option>
+        </select>
+        <div class = "red" ng-if="newOrder.client_customer_validation">{{newOrder.client_customer_validation}}</div>
+        <div class = "red" ng-if="newOrder.errors.customer">{{newOrder.errors.customer.message}}</div>
+        <br>
+
+        <label>Product:</label>
+        <select ng-model="newOrder.product">
+          <option ng-repeat = "product in products" value={{product._id}}>{{product.name}}</option>
+        </select>
+        <div class = "red" ng-if="newOrder.client_product_validation">{{newOrder.client_product_validation}}</div>
+        <div class = "red" ng-if="newOrder.errors.product">{{newOrder.errors.product.message}}</div>
+        <br>
+
+        <label>Quantity:</label>
+        <input type="number" ng-model="newOrder.quantity" name="pQuantity" required="" />
+        <div class = "red" ng-if="newOrder.client_quantity_validation">{{newOrder.client_quantity_validation}}</div>
+        <div class = "red" ng-if="newOrder.errors.quantity">{{newOrder.errors.quantity.message}}</div>
+        <br>
+
+        <input type="submit" ng-click="createOrder()" value="Create"/>
+        <div class = "red" ng-if="newOrder.errors.product_quantity">{{newOrder.errors.product_quantity.message}}</div>
+    </form>
+
+    <input type="text" ng-model = 'orderFilter'>   <br>
+
+    <table>
+      <thead>
+          <tr>
+             <td><a href="" ng-click="sortType = 'last_name'; sortReverse = !sortReverse">Customer Name</a></td>
+             <td>Product</a></td>
+             <td>Quantity</td>
+             <td>Date</td>
+          <tr>
+      </thead>
+
+      <tr ng-repeat = "order in orders | orderBy:sortType:sortReverse | filter:orderFilter">
+          <td>{{order._customer.name}}</td>
+          <td>{{order._product.name}}</td>
+          <td>{{order.quantity}}</td>
+          <td>{{order.createdAt | date : 'M/d/yyyy'}}</td>
+      </tr>
+    </table>
+</div>

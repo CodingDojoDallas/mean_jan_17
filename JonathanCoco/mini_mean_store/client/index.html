@@ -1,0 +1,32 @@
+<!DOCTYPE html ng-app="app">
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <script src='angular/angular.js'></script>
+  <script src='angular-route/angular-route.js'></script>
+  <script src='angular-post-fix/postfix.js'></script>
+  <script src='angular-cookies/angular-cookies.js'></script>
+  <script src='moment/moment.js'></script>
+  <script src='assets/app.js'></script>
+  <script src='assets/factories/customerFactory.js'></script>
+  <script src='assets/factories/productFactory.js'></script>
+  <script src='assets/factories/orderFactory.js'></script>
+  <script src='assets/controllers/headerController.js'></script>
+  <script src='assets/controllers/customerController.js'></script>
+  <script src='assets/controllers/productController.js'></script>
+  <script src='assets/controllers/orderController.js'></script>
+  <script src='assets/controllers/dashboardController.js'></script>
+  <link rel="stylesheet" type="text/css" href="assets/stylesheets/style.css">
+
+  <title>Mean Mini Store</title>
+</head>
+
+<body>
+    <div ng-app='app'>
+        <div ng-view>
+        </div>
+    </div>
+</body>
+
+</html>
