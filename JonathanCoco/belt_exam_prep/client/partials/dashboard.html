@@ -1,0 +1,55 @@
+<div class="container">
+    <div ng-controller='loginController'>
+        <div id="header_1">
+            <p>Welcome, {{user_name}} <p>
+        </div>
+        <div id="header_2">
+            <a href="" ng-click="logout()">Logout</a><p>
+        </div>
+    </div>
+
+    <div ng-controller='topicController'>
+        <input type="text" ng-model = 'topicFilter'>   <br>
+        <table>
+          <thead>
+              <tr>
+                 <td><a href="" ng-click="sortType = '_category'; sortReverse = !sortReverse">Category</a></td>
+                 <td>Topic</td>
+                 <td>User Name</td>
+                 <td>Post</td>
+              <tr>
+          </thead>
+
+          <tr ng-repeat = "topic in topics | orderBy:sortType:sortReverse | filter:topicFilter">
+              <td>{{topic._category.category}}</td>
+              <td><a href="" ng-click="showTopic(topic._id)">{{topic.topic}}</a></td>
+              <td><a href="" ng-click="showUser(topic._user._id)">{{topic._user.first_name}}</a></td>
+              <td>{{topic.answers.length}}</td>
+          </tr>
+        </table>
+
+        <h3>Add a new topic</h3>
+        <form  name="topic_form" class="css-form" novalidate>
+            <label>Topic:</label>
+            <input type="text" ng-model="newTopic.topic" name="cTopic" required="" size="75" /><br>
+            <div class = "red" ng-if="newTopic.errors.topic">{{newTopic.errors.topic.message}}</div>
+            <div class = "red" ng-if="newTopic.client_topic_validation">{{newTopic.client_topic_validation}}</div>
+
+            <label>Description:</label>
+            <textarea ng-model="newTopic.description" name="cDescription" required="" rows="5" cols="100"></textarea><br>
+            <div class = "red" ng-if="newTopic.errors.description">{{newTopic.errors.description.message}}</div>
+            <div class = "red" ng-if="newTopic.client_description_validation">{{newTopic.client_description_validation}}</div>
+
+            <label>Category:</label>
+            <select ng-model="newTopic.category">
+              <option ng-repeat = "category in categories" value={{category._id}}>{{category.category}}</option>
+            </select>
+            <div class = "red" ng-if="newTopic.client_category_validation">{{newTopic.client_category_validation}}</div>
+            <div class = "red" ng-if="newTopic.errors.category">{{newTopic.errors.category.message}}</div>
+            <br>
+            <input type="submit" ng-click="create()" value="Create"/>
+        </form>
+
+
+    </div>
+</div>

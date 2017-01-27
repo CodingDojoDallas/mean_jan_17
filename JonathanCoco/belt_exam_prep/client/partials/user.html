@@ -1,0 +1,19 @@
+<div class="container">
+    <div ng-controller='loginController'>
+        <div id="header_1">
+            <p>Welcome, {{user_name}} <p>
+        </div>
+        <div id="header_2">
+            <a href="" ng-click="dashboard()">Dashboard</a> |
+            <a href="" ng-click="logout()">Logout</a>
+        </div>
+    </div>
+
+    <div ng-controller='userController'>
+        <p>Username: {{user.user.email}}</p>
+        <p>Posted... </p>
+        <p>{{user.stats.numTopics}} Topics </p>
+        <p>{{user.stats.numAnswers}} Answers </p>
+        <p>{{user.stats.numComments}} Comments </p>
+    </div>
+</div>

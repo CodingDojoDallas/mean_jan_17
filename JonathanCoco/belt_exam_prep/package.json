@@ -1,0 +1,19 @@
+{
+  "name": "belt_exam_prep",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^1.0.2",
+    "express": "^4.14.0",
+    "moment": "^2.17.1",
+    "mongoose": "^4.7.8"
+  }
+}
