@@ -1,0 +1,79 @@
+<div class="container" id="login">
+	<h1>MEAN WALL</h1>
+	<h5>Login and Registration</h5>
+	<div class="row">
+		<div class=".col-md-6">
+			<form ng-submit="lC.register()" class="form-horizontal">
+				<fieldset>
+					<legend>Registration</legend>
+					<div class="form-group">
+						<label class="col-sm-4 control-label">Email:</label>
+						<div class="col-sm-8">
+							<input type="email" class="form-control" ng-model="lC.newUser.email">
+							<span class="errormsg" ng-bind="lC.registerErrors.email"></span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4 control-label">First Name:</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" ng-model="lC.newUser.first_name">
+							<span class="errormsg" ng-bind="lC.registerErrors.first_name"></span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4 control-label">Last Name:</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" ng-model="lC.newUser.last_name">
+							<span class="errormsg" ng-bind="lC.registerErrors.last_name"></span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4 control-label">Password:</label>
+						<div class="col-sm-8">
+							<input type="password" class="form-control" ng-model="lC.newUser.password">
+							<span class="errormsg" ng-bind="lC.registerErrors.password"></span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4 control-label">Password Confirm:</label>
+						<div class="col-sm-8">
+							<input type="password" class="form-control" ng-model="lC.newUser.passwordconfirm">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4 control-label">Birthday:</label>
+						<div class="col-sm-8">
+							<input type="date" class="form-control" ng-model="lC.newUser.birthday">
+							<span class="errormsg" ng-bind="lC.registerErrors.birthday"></span>
+						</div>
+					</div>
+					<button type="submit" class="btn btn-success submitBtn">Register</button>
+				</fieldset>
+			</form>
+		</div>
+
+		<div class=".col-md-6">
+			<form ng-submit="lC.login()" class="form-horizontal">
+				<fieldset>
+					<legend>Login</legend>
+					<ul>
+						<li class="errormsg" ng-repeat="error in lC.loginErrors">{{ error }}</li>
+					</ul>
+					<div class="form-group">
+						<label class="col-sm-4 control-label">Email:</label>
+						<div class="col-sm-8">
+							<input type="email" class="form-control" ng-model="lC.loginAttempt.email">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4 control-label">Password:</label>
+						<div class="col-sm-8">
+							<input type="password" class="form-control" ng-model="lC.loginAttempt.password">
+						</div>
+					</div>
+					<button type="submit" class="btn btn-success submitBtn">Login</button>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+</div>
